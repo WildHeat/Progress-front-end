@@ -1,24 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Header from "./components/Header";
+import "bootstrap/dist/css/bootstrap.min.css"
+import MainContent from "./components/MainContent";
+import AllSkills from "./components/AllSkills";
+import { useEffect, useState } from "react";
+import NoUsers from "./components/NoUsers";
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom"
+import AddUserForm from "./components/AddUserForm";
+import PageNotFound from "./components/PageNotFound";
+
 
 function App() {
+
+  const [users, setUsers] = useState([]);
+  const [showing, setShowing] = useState("");
+
+  useEffect(() => {
+      fetch("/api/v1/users", {
+        "headers" : {
+          "Content-type" : "application/json"
+        },
+        "method" : "get"
+      })
+      .then((response) => Promise.all([response.json(),response.headers]))
+      .then(([body,headers]) => {
+        setUsers(body);
+        console.log(body);
+        setShowing(users.length > 0 ? <><Header user={body[0]}/><MainContent/><AllSkills user={body[0]}/></> : <NoUsers/>)
+      });
+    }, [users.length]);
+
+    
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={showing} />
+          <Route path="/add-user" element={<AddUserForm />} />
+          <Route path="/*" element={<PageNotFound />} />
+          
+        </Routes>    
+      </div>
+    </Router>
   );
 }
 
