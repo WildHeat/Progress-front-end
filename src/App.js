@@ -1,46 +1,51 @@
 import "./App.css";
-import Header from "./components/Header";
-import "bootstrap/dist/css/bootstrap.min.css"
-import MainContent from "./components/MainContent";
-import AllSkills from "./components/AllSkills";
-import { useEffect, useState } from "react";
-import NoUsers from "./components/NoUsers";
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom"
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AddUserForm from "./components/AddUserForm";
 import PageNotFound from "./components/PageNotFound";
-
+import { useLocalState } from "./util/useLocalStorage";
+import PrivateRoute from "./components/PrivateRoute";
+import Login from "./components/Login";
+import Homepage from "./components/Homepage";
+import Logout from "./components/Logout";
+import SkillView from "./components/SkillView";
+import Example from "./components/Example";
 
 function App() {
+  const [jwt, setJwt] = useLocalState("jwt", "");
+  // user ? console.log("User is " + user) : console.log("No user");
 
-  const [users, setUsers] = useState([]);
-  const [showing, setShowing] = useState("");
-
-  useEffect(() => {
-      fetch("/api/v1/users", {
-        "headers" : {
-          "Content-type" : "application/json"
-        },
-        "method" : "get"
-      })
-      .then((response) => Promise.all([response.json(),response.headers]))
-      .then(([body,headers]) => {
-        setUsers(body);
-        console.log(body);
-        setShowing(users.length > 0 ? <><Header user={body[0]}/><MainContent/><AllSkills user={body[0]}/></> : <NoUsers/>)
-      });
-    }, [users.length]);
-
-    
+  // useEffect(() => {}, []);
 
   return (
     <Router>
       <div className="App">
+        <p>{jwt}</p>
         <Routes>
-          <Route path="/" element={showing} />
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <Homepage />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/skills/:id"
+            element={
+              <PrivateRoute>
+                <SkillView />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
           <Route path="/add-user" element={<AddUserForm />} />
+          <Route path="/plot" element={<Example />} />
           <Route path="/*" element={<PageNotFound />} />
-          
-        </Routes>    
+        </Routes>
       </div>
     </Router>
   );
