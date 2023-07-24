@@ -262,159 +262,181 @@ const SkillView = () => {
     <div>
       {skill ? (
         <>
-          {skill.name} - {level}
-          <progress value={currentBar} max={max}></progress>
-          <br />
-          <button
-            onClick={() => {
-              setShowEditName(!showEditName);
-            }}
-          >
-            Edit
-          </button>
-          {showEditName ? (
-            <>
+          <div className="compo">
+            {skill.name} - {level}
+            <progress value={currentBar} max={max}></progress>
+            <br />
+            <button
+              onClick={() => {
+                setShowEditName(!showEditName);
+              }}
+            >
+              Edit
+            </button>
+            {showEditName ? (
+              <>
+                <input
+                  type="text"
+                  value={editName}
+                  onChange={(e) => setEditName(e.target.value)}
+                />
+                <button
+                  onClick={() => {
+                    handleEditNameSubmit();
+                  }}
+                >
+                  Update Name
+                </button>
+              </>
+            ) : (
+              <></>
+            )}
+          </div>
+          <div className="main-container">
+            <div className="main-left">
+              <div>
+                <div className="compo">
+                  <p>Stats</p>
+                  <p>Average time: 1h</p>
+                  <p>Average focus: 3.2</p>
+                  <p>Total time: 35h</p>
+                </div>
+                <br />
+                <div className="compo">
+                  <h6>Goals:</h6>
+                  <input
+                    type="text"
+                    value={addGoalInfo}
+                    onChange={(e) => {
+                      setAddGoalInfo(e.target.value);
+                    }}
+                  />
+                  Start date:
+                  <input
+                    type="date"
+                    value={addGoalStartDate}
+                    onChange={(e) => {
+                      setAddGoalStartDate(e.target.value);
+                    }}
+                  />
+                  DeadLine:
+                  <input
+                    type="date"
+                    value={addGoalDeadLine}
+                    onChange={(e) => {
+                      setAddGoalDeadLine(e.target.value);
+                    }}
+                  />
+                  <button
+                    onClick={() => {
+                      handleAddGoal();
+                    }}
+                  >
+                    Add new goal
+                  </button>
+                  {skill.goals.map((goal) => {
+                    return (
+                      <div>
+                        ID: {goal.id} Goal: {goal.goal} Deadline:{" "}
+                        {goal.deadLine} Start date: {goal.startDate}
+                        End Date: {goal.endDate} Completed? {goal.complete}
+                        <button
+                          id={goal.id}
+                          onClick={(e) => {
+                            handleGoalChange(e);
+                          }}
+                        >
+                          {goal.complete ? "Uncomplete" : "Complete"}
+                        </button>
+                        <button
+                          id={goal.id}
+                          onClick={(e) => {
+                            handleDeleteGoal(e);
+                          }}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="compo">
+                  <h6>Exp Entries</h6>
+                  Add experience: How many hours did you put in the dojo?
+                  <input
+                    type="number"
+                    min={0}
+                    value={addExpLength}
+                    onChange={(e) => {
+                      setAddExpLength(e.target.value);
+                    }}
+                  />
+                  <br />
+                  Out of 5 how focused were you? (1-5)
+                  <input
+                    type="number"
+                    min={1}
+                    max={5}
+                    value={addExpFocus}
+                    onChange={(e) => {
+                      setAddExpFocus(e.target.value);
+                    }}
+                  />
+                  <br />
+                  <input
+                    type="date"
+                    value={addExpDate}
+                    onChange={(e) => {
+                      setAddExpDate(e.target.value);
+                    }}
+                  />
+                  <br />
+                  <button
+                    onClick={() => {
+                      handleAddExp();
+                    }}
+                  >
+                    Add Exp
+                  </button>
+                  {skill.expEntries.map((entry) => {
+                    return (
+                      <div>
+                        ID: {entry.id}....EXP: {entry.exp}....Date:{" "}
+                        {entry.timeEntry}
+                        <button
+                          id={entry.id}
+                          onClick={(e) => {
+                            handleDeleteEntry(e);
+                          }}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+            <div className="main-right">
+              LINE PLOT <br />
+              EXP SMA LENGTH
               <input
-                type="text"
-                value={editName}
-                onChange={(e) => setEditName(e.target.value)}
-              />
-              <button
-                onClick={() => {
-                  handleEditNameSubmit();
+                value={expSmaLength}
+                type="number"
+                onChange={(e) => {
+                  setExpSmaLength(e.target.value);
                 }}
-              >
-                Update Name
-              </button>
-            </>
-          ) : (
-            <></>
-          )}
-          <div>
-            <h6>Exp Entries</h6>
-            Add experience: How many hours did you put in the dojo?
-            <input
-              type="number"
-              min={0}
-              value={addExpLength}
-              onChange={(e) => {
-                setAddExpLength(e.target.value);
-              }}
-            />
-            <br />
-            Out of 5 how focused were you? (1-5)
-            <input
-              type="number"
-              min={1}
-              max={5}
-              value={addExpFocus}
-              onChange={(e) => {
-                setAddExpFocus(e.target.value);
-              }}
-            />
-            <br />
-            <input
-              type="date"
-              value={addExpDate}
-              onChange={(e) => {
-                setAddExpDate(e.target.value);
-              }}
-            />
-            <br />
-            <button
-              onClick={() => {
-                handleAddExp();
-              }}
-            >
-              Add Exp
-            </button>
-            {skill.expEntries.map((entry) => {
-              return (
-                <div>
-                  ID: {entry.id}....EXP: {entry.exp}....Date: {entry.timeEntry}
-                  <button
-                    id={entry.id}
-                    onClick={(e) => {
-                      handleDeleteEntry(e);
-                    }}
-                  >
-                    Delete
-                  </button>
-                </div>
-              );
-            })}
+              />
+              <LinePlot data={expGraph} dataName={"exp"} smaName={"sma"} />
+              <LinePlot
+                data={expGraph}
+                dataName={"focus"}
+                smaName={"focusSma"}
+              />
+              <LinePlot data={totalExpGraph} dataName={"exp"} smaName={"sma"} />
+            </div>
           </div>
-          <br />
-          <div>
-            <h6>Goals:</h6>
-            <input
-              type="text"
-              value={addGoalInfo}
-              onChange={(e) => {
-                setAddGoalInfo(e.target.value);
-              }}
-            />
-            Start date:
-            <input
-              type="date"
-              value={addGoalStartDate}
-              onChange={(e) => {
-                setAddGoalStartDate(e.target.value);
-              }}
-            />
-            DeadLine:
-            <input
-              type="date"
-              value={addGoalDeadLine}
-              onChange={(e) => {
-                setAddGoalDeadLine(e.target.value);
-              }}
-            />
-            <button
-              onClick={() => {
-                handleAddGoal();
-              }}
-            >
-              Add new goal
-            </button>
-            {skill.goals.map((goal) => {
-              return (
-                <div>
-                  ID: {goal.id} Goal: {goal.goal} Deadline: {goal.deadLine}{" "}
-                  Start date: {goal.startDate}
-                  End Date: {goal.endDate} Completed? {goal.complete}
-                  <button
-                    id={goal.id}
-                    onClick={(e) => {
-                      handleGoalChange(e);
-                    }}
-                  >
-                    {goal.complete ? "Uncomplete" : "Complete"}
-                  </button>
-                  <button
-                    id={goal.id}
-                    onClick={(e) => {
-                      handleDeleteGoal(e);
-                    }}
-                  >
-                    Delete
-                  </button>
-                </div>
-              );
-            })}
-          </div>
-          LINE PLOT <br />
-          EXP SMA LENGTH
-          <input
-            value={expSmaLength}
-            type="number"
-            onChange={(e) => {
-              setExpSmaLength(e.target.value);
-            }}
-          />
-          <LinePlot data={expGraph} dataName={"exp"} smaName={"sma"} />
-          <LinePlot data={totalExpGraph} dataName={"exp"} smaName={"sma"} />
-          <LinePlot data={expGraph} dataName={"focus"} smaName={"focusSma"} />
+          <footer className="compo">Footer information.</footer>
         </>
       ) : (
         <>No skill found</>

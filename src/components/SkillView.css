@@ -66,3 +66,22 @@ input {
 .LinePlot .recharts-reference-line-line {
   stroke: red;
 }
+
+.compo {
+  border-style: solid;
+  border-color: green;
+}
+
+.main-right {
+  border-style: solid;
+  border-color: red;
+}
+
+.main-left {
+  border-style: solid;
+  border-color: blue;
+}
+
+.main-container {
+  display: flex;
+}
