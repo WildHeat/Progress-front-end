@@ -1,6 +1,25 @@
-.characterIcon{
-	border: 2px solid black;
-	border-radius:50%;
-	height:50%;
-	width: 50%;
+.characterIcon {
+  border: 2px solid black;
+  border-radius: 50%;
+  height: 50%;
+  width: 50%;
+}
+
+.navbar {
+}
+
+.skill-box {
+  border: 2px solid green;
+  margin: 1rem;
+}
+
+.all-skills-container {
+  padding-inline: 15vw;
+}
+
+@media (max-width: 30em) {
+  .all-skills-container {
+    padding-inline: 1rem;
+    margin: 0em;
+  }
 }

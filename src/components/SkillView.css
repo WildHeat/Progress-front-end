@@ -1,7 +1,6 @@
 /* Basic CSS for SkillView component */
 div {
   font-family: Arial, sans-serif;
-  padding: 20px;
 }
 
 h6 {
@@ -31,12 +30,8 @@ input {
   margin: 5px 0;
 }
 
-/* Styling for Exp Entries section */
-#addExpSection {
-  margin-top: 20px;
-}
-
-/* Styling for Goals section */
+/* Styling for Exp Entries section and Goals section */
+#addExpSection,
 #addGoalSection {
   margin-top: 20px;
 }
@@ -49,39 +44,24 @@ input {
   margin-top: 20px;
 }
 
-/* Additional styling for LinePlot */
-/* Customize the appearance of the line chart */
-.LinePlot .recharts-cartesian-axis-line {
-  stroke: #ccc;
-}
-
-.LinePlot .recharts-cartesian-axis-tick line {
-  stroke: #ccc;
-}
-
-.LinePlot .recharts-cartesian-grid line {
-  stroke: #ccc;
-}
-
-.LinePlot .recharts-reference-line-line {
-  stroke: red;
+.main-right {
+  flex: 1;
+  border-style: solid;
 }
 
 .compo {
-  border-style: solid;
-  border-color: green;
-}
-
-.main-right {
-  border-style: solid;
-  border-color: red;
+  margin: auto;
+  padding: 1em;
 }
 
 .main-left {
+  flex: 1;
   border-style: solid;
-  border-color: blue;
 }
 
 .main-container {
+  border-style: solid;
+  padding: 5%;
   display: flex;
+  flex-wrap: wrap;
 }

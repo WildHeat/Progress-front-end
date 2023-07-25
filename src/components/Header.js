@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { currentLevel, getCurrentBar } from "../util/expToLevel";
 
 function Header(props) {
-  const max = 100;
-  const currentBar = 30;
+  const [level, setLevel] = useState(2);
+  const [max, setMax] = useState(0);
+  const [currentBar, setCurrentBar] = useState(0);
+  const user = props.user;
+
+  useEffect(() => {
+    if (user && user.skills.length !== 0) {
+      var totalExp = 0;
+      user.skills.forEach((skill) => {
+        totalExp += skill.exp;
+      });
+      console.log(totalExp);
+      setLevel(parseInt(currentLevel(totalExp, 300, 1.5), 10));
+      var currentBarReturn = getCurrentBar(level, 300, 1.5, totalExp);
+      setCurrentBar(currentBarReturn[0]);
+      setMax(currentBarReturn[1]);
+    }
+  }, [user, level]);
+
   return (
-    <nav className="navbar navbar-expand-sm navbar-light bg-info py-3">
+    <nav className="navbar bg-info">
       <div className="characterinfo">
         <img
           className="characterIcon"
@@ -12,7 +30,9 @@ function Header(props) {
           alt="Character Icon"
         />
         <progress value={currentBar} max={max}></progress>
-        <p>{props.user.username} - Level 10</p>
+        <p>
+          {user.username} - Level {level}
+        </p>
       </div>
       <button
         className="navbar-toggler"

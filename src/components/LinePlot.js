@@ -44,6 +44,7 @@ class LinePlot extends Component {
             tickLine={false}
           />
           <Tooltip />
+          <Legend />
           <CartesianGrid opacity={1} vertical={false} />
         </AreaChart>
       </ResponsiveContainer>

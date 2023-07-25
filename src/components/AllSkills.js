@@ -87,7 +87,7 @@ const AllSkills = (props) => {
     var listOfSkills = [];
     for (let i = 0; i < props.user.skills.length; i++) {
       listOfSkills.push(
-        <>
+        <div className="skill-box">
           <Skill
             skill={props.user.skills[i].name}
             exp={props.user.skills[i].exp}
@@ -106,7 +106,7 @@ const AllSkills = (props) => {
           >
             Delete
           </button>
-        </>
+        </div>
       );
     }
     return listOfSkills;
@@ -114,7 +114,7 @@ const AllSkills = (props) => {
 
   return (
     <>
-      {displaySkills()}
+      <div className="all-skills-container">{displaySkills()}</div>
       <div>
         <label htmlFor="skillName">New skill name</label>
         <input

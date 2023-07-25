@@ -13,28 +13,13 @@ const Skill = ({ skill, exp, skillId }) => {
   // var currentBar = exp - currentLevelExp;
 
   return (
-    <div>
+    <div className="skill-box-content">
       <h3>
-        <Link to={"/skills/" + skillId}>
-          {skill} - {skillId}
-        </Link>
+        <Link to={"/skills/" + skillId}>{skill}</Link>
       </h3>
-      <div className="w-25 border border-primary mx-5 my-3">
-        <p>Level: {level}</p>
-        <p>EXP: {exp}</p>
-        <progress value={currentBar} max={max}></progress>
-        {/* <div className="progress">
-            <div
-              className="progress-bar"
-              role="progressbar"
-              aria-valuenow="70"
-              aria-valuemin="0"
-              aria-valuemax="100"
-            >
-              <span className="sr-only">....35%...</span>
-            </div>
-          </div> */}
-      </div>
+      <p>Level: {level}</p>
+      <p>EXP: {exp}</p>
+      <progress value={currentBar} max={max}></progress>
     </div>
   );
 };
