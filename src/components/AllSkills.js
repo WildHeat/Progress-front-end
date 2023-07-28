@@ -114,6 +114,7 @@ const AllSkills = (props) => {
 
   return (
     <>
+      <h2 className="skills-title">Skills</h2>
       <div className="all-skills-container">{displaySkills()}</div>
       <div>
         <label htmlFor="skillName">New skill name</label>

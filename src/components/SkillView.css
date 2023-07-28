@@ -18,7 +18,9 @@ button {
   border: none;
   padding: 10px 15px;
   margin-top: 5px;
+  margin-right: 5px;
   cursor: pointer;
+  border-radius: 15px;
 }
 
 button:hover {
@@ -64,4 +66,9 @@ input {
   padding: 5%;
   display: flex;
   flex-wrap: wrap;
+}
+
+.skills-title {
+  width: 100%;
+  text-align: center;
 }

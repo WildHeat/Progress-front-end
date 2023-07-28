@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocalState } from "../util/useLocalStorage";
 import Header from "./Header.js";
+import HomePageProfile from "./HomePageProfile.js";
 import MainContent from "./MainContent.js";
 import AllSkills from "./AllSkills.js";
 
@@ -40,6 +41,7 @@ function Homepage() {
       {user ? (
         <>
           <Header user={user} />
+          <HomePageProfile user={user} />
           {/* <MainContent /> */}
           <AllSkills user={user} />
         </>

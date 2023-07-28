@@ -1,20 +1,82 @@
 .characterIcon {
   border: 2px solid black;
-  border-radius: 50%;
-  height: 50%;
-  width: 50%;
+  border-radius: 15%;
+  height: 20;
+  width: 20;
 }
 
-.navbar {
+.home-page-profile-container {
+  background-color: #284b63;
+  padding: 2em;
+}
+
+.home-page-profile-container h3,
+p {
+  color: white;
+}
+
+.characterinfo,
+.profileStats {
+  padding: 2em;
+}
+
+.profile-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 5em 0 5em;
+}
+
+.character-name-container {
+  padding-top: 2em;
+  text-align: center;
+  font-weight: 200;
+}
+
+.profile-progress-bar {
+  padding: 1%;
+}
+
+.profile-progress-bar-container {
+  padding: 0em 5em 0em 5em;
+}
+
+.primary-navigation {
+  list-style-type: none;
+}
+
+.nav-item {
+  display: inline-block;
+  padding: 1em 2em;
+}
+
+.nav-item a {
+  transition: all 0.3s ease 0s;
+}
+
+.nav-item a:hover {
+  color: white;
+}
+
+.progress {
+  width: 10%;
 }
 
 .skill-box {
-  border: 2px solid green;
+  width: 25%;
+  box-sizing: border-box;
+  padding: 2em;
+  border: 2px solid teal;
   margin: 1rem;
+  border-radius: 25px;
+  /* flex: 50%; */
 }
 
 .all-skills-container {
-  padding-inline: 15vw;
+  display: flex;
+  flex-wrap: wrap;
+  padding-inline: 10vw;
+  justify-content: space-evenly;
 }
 
 @media (max-width: 30em) {

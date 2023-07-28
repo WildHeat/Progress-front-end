@@ -8,7 +8,7 @@ const Skill = ({ skill, exp, skillId }) => {
   var currentBar = currentBarReturn[0];
   var max = currentBarReturn[1];
   // var currentLevelExp = expForLevel(level, 100, 1.2);
-  // var nextLevelExp = expForLevel(level + 1, 100, 1.2);
+  var nextLevelExp = expForLevel(level + 1, 100, 1.2);
   // var max = nextLevelExp - currentLevelExp;
   // var currentBar = exp - currentLevelExp;
 
@@ -18,8 +18,22 @@ const Skill = ({ skill, exp, skillId }) => {
         <Link to={"/skills/" + skillId}>{skill}</Link>
       </h3>
       <p>Level: {level}</p>
-      <p>EXP: {exp}</p>
+      <div className="progress-container">
+        <div
+          className="progress progress-bar-striped"
+          role="progressbar"
+          style={{ width: currentBar / max }}
+          aria-valuenow="10"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
+          <span>
+            {exp}/{parseInt(nextLevelExp)}
+          </span>
+        </div>
+      </div>
       <progress value={currentBar} max={max}></progress>
+      EXP: {exp}/{parseInt(nextLevelExp)}
     </div>
   );
 };

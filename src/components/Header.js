@@ -22,8 +22,9 @@ function Header(props) {
   }, [user, level]);
 
   return (
-    <nav className="navbar bg-info">
-      <div className="characterinfo">
+    <header className="navbar bg-info">
+      <h3>Progress Tracker</h3>
+      {/* <div className="characterinfo">
         <img
           className="characterIcon"
           src={require("../img/icon1.jpg")}
@@ -33,8 +34,8 @@ function Header(props) {
         <p>
           {user.username} - Level {level}
         </p>
-      </div>
-      <button
+      </div> */}
+      {/* <button
         className="navbar-toggler"
         type="button"
         data-toggle="collapse"
@@ -44,9 +45,33 @@ function Header(props) {
         aria-label="Toggle navigation"
       >
         <span className="navbar-toggler-icon"></span>
-      </button>
-
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
+      </button> */}
+      <nav>
+        <ul className="primary-navigation">
+          <li className="nav-item">
+            <a className="nav-link" href="/">
+              Home
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="/add-user">
+              Register
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="/login">
+              Login
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="/logout">
+              Logout
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <button className="contact-button">Contact</button>
+      {/* <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mx-auto">
           <li className="nav-item active">
             <a className="nav-link" href="/">
@@ -69,8 +94,8 @@ function Header(props) {
             </a>
           </li>
         </ul>
-      </div>
-    </nav>
+      </div> */}
+    </header>
   );
 }
 
