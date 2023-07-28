@@ -22,7 +22,7 @@ function Header(props) {
   }, [user, level]);
 
   return (
-    <header className="navbar bg-info">
+    <header className="navbar">
       <h3>Progress Tracker</h3>
       {/* <div className="characterinfo">
         <img

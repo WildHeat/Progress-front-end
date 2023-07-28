@@ -73,6 +73,7 @@ p {
 }
 
 .all-skills-container {
+  background-color: #ececec;
   display: flex;
   flex-wrap: wrap;
   padding-inline: 10vw;
