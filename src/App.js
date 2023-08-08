@@ -9,11 +9,13 @@ import Homepage from "./components/Homepage";
 import Logout from "./components/Logout";
 import SkillView from "./components/SkillView";
 import Example from "./components/Example";
+import Header from "./components/Header";
 
 function App() {
   return (
     <Router>
       <div className="App">
+        <Header />
         <Routes>
           <Route
             path="/"

@@ -10,7 +10,7 @@ const AllSkills = (props) => {
       console.log("User skills");
       let newSkill = {
         name: newSkillName,
-        exp: 100,
+        exp: 0,
         startDate: getTodaysDate(),
       };
       let tempUser = props.user;
@@ -116,7 +116,7 @@ const AllSkills = (props) => {
     <>
       <h2 className="skills-title">Skills</h2>
       <div className="all-skills-container">{displaySkills()}</div>
-      <div>
+      <div className="add-skill-container">
         <label htmlFor="skillName">New skill name</label>
         <input
           name="skillName"
@@ -126,13 +126,13 @@ const AllSkills = (props) => {
             setNewSkillName(e.target.value);
           }}
         />
-      </div>
-      <div>
-        <input
-          type="submit"
-          value="Add new skill"
-          onClick={() => handleNewSkillSubmit()}
-        />
+        <div>
+          <input
+            type="submit"
+            value="Add new skill"
+            onClick={() => handleNewSkillSubmit()}
+          />
+        </div>
       </div>
     </>
   );

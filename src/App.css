@@ -1,3 +1,26 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.logo {
+  font-weight: 800;
+  margin: 2rem;
+}
+
 .characterIcon {
   border: 2px solid black;
   border-radius: 15%;
@@ -10,8 +33,7 @@
   padding: 2em;
 }
 
-.home-page-profile-container h3,
-p {
+.character-statistic {
   color: white;
 }
 
@@ -42,7 +64,11 @@ p {
 }
 
 .primary-navigation {
+  display: flex;
+  flex-wrap: wrap;
   list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 .nav-item {
@@ -52,10 +78,11 @@ p {
 
 .nav-item a {
   transition: all 0.3s ease 0s;
+  font-weight: 700;
 }
 
 .nav-item a:hover {
-  color: white;
+  color: red;
 }
 
 .progress {
@@ -63,11 +90,11 @@ p {
 }
 
 .skill-box {
-  width: 25%;
+  flex: 1;
+  min-width: min(33vw, 30em);
   box-sizing: border-box;
   padding: 2em;
   border: 2px solid teal;
-  margin: 1rem;
   border-radius: 25px;
   /* flex: 50%; */
 }
@@ -75,14 +102,53 @@ p {
 .all-skills-container {
   background-color: #ececec;
   display: flex;
+  gap: 1em;
   flex-wrap: wrap;
-  padding-inline: 10vw;
+  padding-inline: 3rem;
   justify-content: space-evenly;
 }
 
-@media (max-width: 30em) {
+.add-skill-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  justify-content: center;
+}
+
+@media (max-width: 40em) {
   .all-skills-container {
-    padding-inline: 1rem;
+    display: block;
     margin: 0em;
+  }
+
+  .skill-box {
+    width: 100%;
+  }
+
+  .primary-navigation {
+    position: fixed;
+    inset: 0 0 0 30%;
+    z-index: 1000;
+
+    background: hsl(0 0% 100% / 0.9);
+    /* backdrop-filter: blur(1rem); */
+
+    padding: min(10vh, 10rem) 2em;
+    flex-direction: column;
+  }
+
+  .mobile-nav-toggle {
+    position: absolute;
+    z-index: 9999;
+    width: 1rem;
+    aspect-ratio: 1;
+    right: 2rem;
+  }
+
+  @supports (backdrop-filter: blur(1rem)) {
+    .primary-navigation {
+      background: hsl(0 0% 100% / 0.1);
+      backdrop-filter: blur(1rem);
+    }
   }
 }

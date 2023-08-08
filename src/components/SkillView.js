@@ -20,6 +20,11 @@ const SkillView = () => {
   const [addGoalStartDate, setAddGoalStartDate] = useState(getTodaysDate());
   const [addGoalDeadLine, setAddGoalDeadLine] = useState(getTodaysDate());
 
+  const [totalTime, setTotalTime] = useState(0);
+  const [totalExp, setTotalExp] = useState(0);
+  const [averageTime, setAverageTime] = useState(0);
+  const [averageFocus, setAverageFocus] = useState(0);
+
   const [totalExpGraph, setTotalExpGraph] = useState([]);
   const [expSmaLength, setExpSmaLength] = useState(7);
 
@@ -75,6 +80,8 @@ const SkillView = () => {
     if (skill && skill.expEntries.length > 0) {
       // setExpGraph(skill.expEntries);
       let tempExp = skill.expEntries;
+      let timeSum = 0;
+      let focusSum = 0;
       for (let i = 0; i < tempExp.length; i++) {
         //calculate SMA
         let count = 0;
@@ -105,10 +112,17 @@ const SkillView = () => {
             timeEntry: skill.expEntries[0].timeEntry,
           });
         }
+        focusSum += tempExp[i].focus;
+        timeSum += tempExp[i].hours;
       }
       setRefresh(true);
       setExpGraph(tempExp);
       setTotalExpGraph(tempTotalGraph);
+
+      setTotalExp(tempTotalGraph[tempTotalGraph.length - 1].exp);
+      setTotalTime(timeSum);
+      setAverageTime(timeSum / tempExp.length);
+      setAverageFocus(focusSum / tempExp.length);
     }
   }, [skill, expSmaLength]);
 
@@ -297,9 +311,10 @@ const SkillView = () => {
               <div>
                 <div className="compo">
                   <p>Stats</p>
-                  <p>Average time: 1h</p>
-                  <p>Average focus: 3.2</p>
-                  <p>Total time: 35h</p>
+                  <p>Average time: {averageTime}h</p>
+                  <p>Average focus: {averageFocus}</p>
+                  <p>Total time: {totalTime}</p>
+                  <p>Total EXP: {totalExp}</p>
                 </div>
                 <br />
                 <div className="compo">

@@ -19,7 +19,7 @@ const Skill = ({ skill, exp, skillId }) => {
       </h3>
       <p>Level: {level}</p>
       <div className="progress-container">
-        <div
+        {/* <div
           className="progress progress-bar-striped"
           role="progressbar"
           style={{ width: currentBar / max }}
@@ -30,9 +30,9 @@ const Skill = ({ skill, exp, skillId }) => {
           <span>
             {exp}/{parseInt(nextLevelExp)}
           </span>
-        </div>
+        </div> */}
+        <progress value={currentBar} max={max}></progress>
       </div>
-      <progress value={currentBar} max={max}></progress>
       EXP: {exp}/{parseInt(nextLevelExp)}
     </div>
   );

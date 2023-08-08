@@ -40,7 +40,6 @@ function Homepage() {
     <div>
       {user ? (
         <>
-          <Header user={user} />
           <HomePageProfile user={user} />
           {/* <MainContent /> */}
           <AllSkills user={user} />

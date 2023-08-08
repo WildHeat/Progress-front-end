@@ -1,56 +1,28 @@
-import React, { useEffect, useState } from "react";
-import { currentLevel, getCurrentBar } from "../util/expToLevel";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function Header(props) {
-  const [level, setLevel] = useState(2);
-  const [max, setMax] = useState(0);
-  const [currentBar, setCurrentBar] = useState(0);
-  const user = props.user;
-
-  useEffect(() => {
-    if (user && user.skills.length !== 0) {
-      var totalExp = 0;
-      user.skills.forEach((skill) => {
-        totalExp += skill.exp;
-      });
-      console.log(totalExp);
-      setLevel(parseInt(currentLevel(totalExp, 300, 1.5), 10));
-      var currentBarReturn = getCurrentBar(level, 300, 1.5, totalExp);
-      setCurrentBar(currentBarReturn[0]);
-      setMax(currentBarReturn[1]);
-    }
-  }, [user, level]);
-
+function Header() {
   return (
-    <header className="navbar">
-      <h3>Progress Tracker</h3>
-      {/* <div className="characterinfo">
-        <img
-          className="characterIcon"
-          src={require("../img/icon1.jpg")}
-          alt="Character Icon"
-        />
-        <progress value={currentBar} max={max}></progress>
-        <p>
-          {user.username} - Level {level}
-        </p>
-      </div> */}
-      {/* <button
-        className="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
+    <header>
+      <h3 className="logo">Progress Tracker</h3>
+      <FontAwesomeIcon icon="coffee" size="xs" />
+      <button
+        className="mobile-nav-toggle"
+        aria-controls="primary-navigation"
         aria-expanded="false"
-        aria-label="Toggle navigation"
       >
-        <span className="navbar-toggler-icon"></span>
-      </button> */}
+        <span className="sr-only">Menu</span>
+      </button>
+
       <nav>
         <ul className="primary-navigation">
           <li className="nav-item">
             <a className="nav-link" href="/">
               Home
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="/about">
+              About
             </a>
           </li>
           <li className="nav-item">
@@ -70,31 +42,7 @@ function Header(props) {
           </li>
         </ul>
       </nav>
-      <button className="contact-button">Contact</button>
-      {/* <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul className="navbar-nav mx-auto">
-          <li className="nav-item active">
-            <a className="nav-link" href="/">
-              Home
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/add-user">
-              Register
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/login">
-              Login
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/logout">
-              Logout
-            </a>
-          </li>
-        </ul>
-      </div> */}
+      {/* <button className="contact-button">Contact</button> */}
     </header>
   );
 }
