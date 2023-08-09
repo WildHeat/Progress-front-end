@@ -1,20 +1,48 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
 
 function Header() {
+  const [showNav, setShowNav] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const updateDimension = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", updateDimension);
+
+    if (windowWidth >= 640) {
+      setShowNav(true);
+    }
+
+    return () => {
+      window.removeEventListener("resize", updateDimension);
+    };
+  }, [windowWidth]);
+
   return (
     <header>
       <h3 className="logo">Progress Tracker</h3>
-      <FontAwesomeIcon icon="coffee" size="xs" />
       <button
         className="mobile-nav-toggle"
         aria-controls="primary-navigation"
         aria-expanded="false"
+        onClick={() => {
+          setShowNav(!showNav);
+        }}
       >
         <span className="sr-only">Menu</span>
       </button>
 
       <nav>
-        <ul className="primary-navigation">
+        <ul
+          className="primary-navigation"
+          style={
+            showNav
+              ? { transform: "translateX(0)" }
+              : { transform: "translateX(100%)" }
+          }
+        >
           <li className="nav-item">
             <a className="nav-link" href="/">
               Home
@@ -42,7 +70,6 @@ function Header() {
           </li>
         </ul>
       </nav>
-      {/* <button className="contact-button">Contact</button> */}
     </header>
   );
 }

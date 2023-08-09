@@ -69,6 +69,7 @@ header {
   list-style-type: none;
   padding: 0;
   margin: 0;
+  /* transform: translateX(0%); */
 }
 
 .nav-item {
@@ -115,10 +116,18 @@ header {
   justify-content: center;
 }
 
+.mobile-nav-toggle {
+  display: none;
+}
+
 @media (max-width: 40em) {
   .all-skills-container {
     display: block;
     margin: 0em;
+  }
+
+  .mobile-nav-toggle {
+    display: block;
   }
 
   .skill-box {
@@ -135,6 +144,8 @@ header {
 
     padding: min(10vh, 10rem) 2em;
     flex-direction: column;
+
+    /* transform: translateX(0%); */
   }
 
   .mobile-nav-toggle {
