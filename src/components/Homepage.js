@@ -41,7 +41,6 @@ function Homepage() {
       {user ? (
         <>
           <HomePageProfile user={user} />
-          {/* <MainContent /> */}
           <AllSkills user={user} />
         </>
       ) : (

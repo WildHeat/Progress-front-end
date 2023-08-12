@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 
 function Header() {
@@ -19,6 +18,33 @@ function Header() {
       window.removeEventListener("resize", updateDimension);
     };
   }, [windowWidth]);
+
+  const isLoggedInNavBar = () => {
+    // console.log(localStorage.getItem("jwt"));
+    if (localStorage.getItem("jwt") === "null") {
+      return (
+        <>
+          <li className="nav-item">
+            <a className="nav-link" href="/add-user">
+              Register
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="/login">
+              Login
+            </a>
+          </li>
+        </>
+      );
+    }
+    return (
+      <li className="nav-item">
+        <a className="nav-link" href="/logout">
+          Logout
+        </a>
+      </li>
+    );
+  };
 
   return (
     <header>
@@ -53,21 +79,7 @@ function Header() {
               About
             </a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/add-user">
-              Register
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/login">
-              Login
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/logout">
-              Logout
-            </a>
-          </li>
+          {isLoggedInNavBar()}
         </ul>
       </nav>
     </header>

@@ -3,6 +3,10 @@ div {
   font-family: Arial, sans-serif;
 }
 
+body {
+  background-color: rgb(241, 241, 241);
+}
+
 h6 {
   font-size: 18px;
 }
@@ -48,23 +52,51 @@ input {
 
 .main-right {
   flex: 1;
-  border-style: solid;
+  /* background-color: white;
+  border-radius: 23px; */
+  /* border-style: solid; */
+}
+
+.goal-text-box {
+  width: 100%;
 }
 
 .compo {
-  margin: auto;
   padding: 1em;
+  background-color: white;
+  border-radius: 23px;
+  border: solid rgb(235, 235, 235);
+  width: 100%;
+}
+
+.skill-view-container {
+  padding-inline: 10%;
+}
+
+@media (max-width: 40em) {
+  .skill-view-container {
+    padding-inline: 5%;
+  }
+}
+
+.exp-bar {
+  margin-bottom: 1em;
 }
 
 .main-left {
   flex: 1;
-  border-style: solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1em;
+  /* border-style: solid; */
 }
 
 .main-container {
-  border-style: solid;
-  padding: 5%;
+  /* border-style: solid; */
+  /* padding: 5%; */
   display: flex;
+  gap: 1em;
   flex-wrap: wrap;
 }
 

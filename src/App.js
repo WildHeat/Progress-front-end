@@ -8,7 +8,6 @@ import Login from "./components/Login";
 import Homepage from "./components/Homepage";
 import Logout from "./components/Logout";
 import SkillView from "./components/SkillView";
-import Example from "./components/Example";
 import Header from "./components/Header";
 
 function App() {
@@ -37,7 +36,6 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/add-user" element={<AddUserForm />} />
-          <Route path="/plot" element={<Example />} />
           <Route path="/*" element={<PageNotFound />} />
         </Routes>
       </div>

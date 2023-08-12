@@ -37,9 +37,20 @@ header {
   color: white;
 }
 
-.characterinfo,
-.profileStats {
+.profile-stats {
+  margin-block: auto;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
   padding: 2em;
+}
+
+.first-three-skills {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  gap: 0.5em;
+  padding-inline: 0.5em;
 }
 
 .profile-container {
@@ -53,6 +64,14 @@ header {
   padding-top: 2em;
   text-align: center;
   font-weight: 200;
+}
+
+.character-skills {
+  /* margin-block: auto; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2em;
 }
 
 .profile-progress-bar {
@@ -149,7 +168,7 @@ header {
   }
 
   .mobile-nav-toggle {
-    position: absolute;
+    position: fixed;
     z-index: 9999;
     width: 1rem;
     aspect-ratio: 1;
