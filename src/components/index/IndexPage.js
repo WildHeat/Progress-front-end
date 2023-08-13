@@ -1,7 +1,22 @@
 import React from "react";
 import "./IndexPage.css";
+import ImageSlider from "../ImageSlider/ImageSlider";
 
 function IndexPage() {
+  const slides = [
+    {
+      title: "target hit",
+      url: "https://www.incimages.com/uploaded_files/image/1920x1080/shutterstock_318915104_360067.jpg",
+    },
+    {
+      title: "stats",
+      url: "https://poetsandquants.com/wp-content/uploads/sites/5/2018/05/benefits-of-a-business-analytics-course-and-degree-img.jpg",
+    },
+    {
+      title: "profile",
+      url: "https://fairwaysolitaire.zendesk.com/hc/article_attachments/115003749914/Profile.jpg",
+    },
+  ];
   return (
     <div className="index-page-container">
       <div className="top-content">
@@ -21,8 +36,8 @@ function IndexPage() {
           </p>
         </div>
       </div>
-      <div className="slide-show-container">
-        this will be the slide show of the page
+      <div className="show-container">
+        <ImageSlider slides={slides} />
       </div>
       <div className="begin-your-journey-container">Begin your journey</div>
     </div>

@@ -1,0 +1,34 @@
+.arrow {
+  position: absolute;
+  top: 50%;
+  font-size: 50px;
+  text-shadow: 10px;
+  color: white;
+  z-index: 999;
+  cursor: pointer;
+  transform: translate(0, -50%);
+}
+
+.left-arrow {
+  left: 32px;
+}
+.right-arrow {
+  right: 32px;
+}
+
+.image-slidshow-container {
+  /* margin: 2rem; */
+  width: 90%;
+  height: 90%;
+  position: relative;
+}
+
+.dots-container {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+}
+
+.slide-show-dot {
+  cursor: pointer;
+}
