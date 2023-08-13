@@ -38,17 +38,24 @@ function Header() {
       );
     }
     return (
-      <li className="nav-item">
-        <a className="nav-link" href="/logout">
-          Logout
-        </a>
-      </li>
+      <>
+        <li className="nav-item">
+          <a className="nav-link" href="/profile">
+            Profile
+          </a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link" href="/logout">
+            Logout
+          </a>
+        </li>
+      </>
     );
   };
 
   return (
     <header>
-      <h3 className="logo">Progress Tracker</h3>
+      <h3 className="logo">AB Tracker</h3>
       <button
         className="mobile-nav-toggle"
         aria-controls="primary-navigation"
@@ -79,6 +86,7 @@ function Header() {
               About
             </a>
           </li>
+
           {isLoggedInNavBar()}
         </ul>
       </nav>

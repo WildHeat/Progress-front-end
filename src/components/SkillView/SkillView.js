@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useLocalState } from "../util/useLocalStorage";
-import { getTodaysDate } from "../util/getTodaysDate";
-import { currentLevel, getCurrentBar } from "../util/expToLevel";
-import LinePlot from "./LinePlot";
+// import { getTodaysDate } from ".../util/getTodaysDate";
+// import { currentLevel, getCurrentBar } from ".../util/expToLevel";
+import LinePlot from "../LinePlot";
 import "./SkillView.css"; // Import the CSS file
+import { useLocalState } from "../../util/useLocalStorage";
+import { getTodaysDate } from "../../util/getTodaysDate";
+import { currentLevel, getCurrentBar } from "../../util/expToLevel";
 
 const SkillView = () => {
   const [skill, setSkill] = useState(null);

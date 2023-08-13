@@ -7,8 +7,9 @@ import PrivateRoute from "./components/PrivateRoute";
 import Login from "./components/Login";
 import Homepage from "./components/Homepage";
 import Logout from "./components/Logout";
-import SkillView from "./components/SkillView";
 import Header from "./components/Header";
+import IndexPage from "./components/index/IndexPage";
+import SkillView from "./components/SkillView/SkillView";
 
 function App() {
   return (
@@ -16,8 +17,9 @@ function App() {
       <div className="App">
         <Header />
         <Routes>
+          <Route path="/" element={<IndexPage />} />
           <Route
-            path="/"
+            path="/profile"
             element={
               <PrivateRoute>
                 <Homepage />
@@ -33,6 +35,7 @@ function App() {
               </PrivateRoute>
             }
           />
+
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/add-user" element={<AddUserForm />} />

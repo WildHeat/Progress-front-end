@@ -1,7 +1,8 @@
 header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: min(20rem, 20vw);
 }
 
 .sr-only {
@@ -18,7 +19,7 @@ header {
 
 .logo {
   font-weight: 800;
-  margin: 2rem;
+  margin: 0 2rem;
 }
 
 .characterIcon {
