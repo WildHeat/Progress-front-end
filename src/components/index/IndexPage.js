@@ -8,17 +8,17 @@ function IndexPage() {
         <div className="image-container">
           <img
             className="index-meditate"
-            src={require("../../img/meditate.png")}
+            src={require("../../img/samurai.png")}
             // src\img\Miyamoto-musashi-ink.png
             alt="Character Icon"
           />
         </div>
-        <div className="top-text">
-          <h3>
-            There is much to learn in this world and Feedback and tracking your
+        <div className="top-text-container">
+          <h3>AB Tracker</h3>
+          <p>
+            There is much to LEARN in this world and Feedback and tracking your
             progress is one KEY step to your journey.
-          </h3>
-          <h3>Will you take this path or not? </h3>
+          </p>
         </div>
       </div>
       <div className="slide-show-container">
