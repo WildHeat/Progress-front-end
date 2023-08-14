@@ -39,6 +39,34 @@ function IndexPage() {
       <div className="show-container">
         <ImageSlider slides={slides} />
       </div>
+      <div className="info-deck">
+        <div className="card-in-deck">
+          You can do some analytics on the different skills that you develop
+        </div>
+        <div className="card-in-deck">
+          Be able to use charts to analysis sessions
+        </div>
+        <div className="card-in-deck">
+          Increase the level of your character to emthasis the progress that you
+          have made
+        </div>
+        <div className="card-in-deck">
+          Share this information with your friends and family
+        </div>
+        <div className="card-in-deck">
+          You can do some analytics on the different skills that you develop
+        </div>
+        <div className="card-in-deck">
+          Be able to use charts to analysis sessions
+        </div>
+        <div className="card-in-deck">
+          Increase the level of your character to emthasis the progress that you
+          have made
+        </div>
+        <div className="card-in-deck">
+          Share this information with your friends and family
+        </div>
+      </div>
       <div className="begin-your-journey-container">Begin your journey</div>
     </div>
   );
