@@ -20,12 +20,11 @@ function Header() {
   }, [windowWidth]);
 
   const isLoggedInNavBar = () => {
-    // console.log(localStorage.getItem("jwt"));
     if (localStorage.getItem("jwt") === "null") {
       return (
         <>
           <li className="nav-item">
-            <a className="nav-link" href="/add-user">
+            <a className="nav-link" href="/register">
               Register
             </a>
           </li>
@@ -55,7 +54,9 @@ function Header() {
 
   return (
     <header>
-      <h3 className="logo">AB Tracker</h3>
+      <a className="logo" href="/">
+        <h3 className="logo">AB Tracker</h3>
+      </a>
       <button
         className="mobile-nav-toggle"
         aria-controls="primary-navigation"

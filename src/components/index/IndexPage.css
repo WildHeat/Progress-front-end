@@ -56,7 +56,7 @@
 }
 
 .info-deck {
-  padding: 1em 10%;
+  padding: 1em 10% 3em 10%;
   display: flex;
   justify-content: space-between;
   gap: 2em;
@@ -74,4 +74,20 @@
   background-color: white;
   border: solid rgb(236, 236, 236);
   border-radius: 10px;
+}
+
+.begin-your-journey-container {
+  color: white;
+  padding: 4em;
+  background-color: rgb(44, 44, 44);
+}
+
+.register-button {
+  background-color: white;
+  color: red;
+}
+
+.register-button:hover {
+  background-color: red;
+  color: white;
 }

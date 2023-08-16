@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { currentLevel, expForLevel, getCurrentBar } from "../util/expToLevel";
+import ProgressBar from "./ProgressBar";
 
 const Skill = ({ skill, exp, skillId }) => {
   const level = parseInt(currentLevel(exp, 100, 1.2), 10);
@@ -19,19 +20,7 @@ const Skill = ({ skill, exp, skillId }) => {
       </h3>
       <p>Level: {level}</p>
       <div className="progress-container">
-        {/* <div
-          className="progress progress-bar-striped"
-          role="progressbar"
-          style={{ width: currentBar / max }}
-          aria-valuenow="10"
-          aria-valuemin="0"
-          aria-valuemax="100"
-        >
-          <span>
-            {exp}/{parseInt(nextLevelExp)}
-          </span>
-        </div> */}
-        <progress value={currentBar} max={max}></progress>
+        <ProgressBar current={currentBar} max={max} />
       </div>
       EXP: {exp}/{parseInt(nextLevelExp)}
     </div>

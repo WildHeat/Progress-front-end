@@ -6,6 +6,7 @@ import "./SkillView.css"; // Import the CSS file
 import { useLocalState } from "../../util/useLocalStorage";
 import { getTodaysDate } from "../../util/getTodaysDate";
 import { currentLevel, getCurrentBar } from "../../util/expToLevel";
+import ProgressBar from "../ProgressBar";
 
 const SkillView = () => {
   const [skill, setSkill] = useState(null);
@@ -274,13 +275,17 @@ const SkillView = () => {
     max = currentBarReturn[1];
   }
 
+  const round = (round) => {
+    return Math.floor(round * 100) / 100;
+  };
+
   return (
     <div className="skill-view-container">
       {skill ? (
         <>
           <div className="compo exp-bar">
             {skill.name} - {level}
-            <progress value={currentBar} max={max}></progress>
+            <ProgressBar current={currentBar} max={max} />
             <br />
             <button
               onClick={() => {
@@ -313,9 +318,9 @@ const SkillView = () => {
               <div className="compo">
                 <h4>Stats</h4>
                 <hr />
-                <p>Average time: {averageTime}h</p>
-                <p>Average focus: {averageFocus}</p>
-                <p>Total time: {totalTime}</p>
+                <p>Average time: {round(averageTime)}h</p>
+                <p>Average focus: {round(averageFocus)}</p>
+                <p>Total time: {round(totalTime)}</p>
                 <p>Total EXP: {totalExp}</p>
               </div>
               <div className="compo">
@@ -326,9 +331,9 @@ const SkillView = () => {
                     <>
                       {goal.complete ? (
                         <s>
-                          <div key={goal.id}>
-                            Goal: {goal.goal} Deadline: {goal.deadLine} Start
-                            date: {goal.startDate}
+                          <div className="completed-goal" key={goal.id}>
+                            {goal.goal} Deadline: {goal.deadLine} Start date:{" "}
+                            {goal.startDate}
                             End Date: {goal.endDate}
                             <button
                               id={goal.id}
@@ -349,9 +354,9 @@ const SkillView = () => {
                           </div>
                         </s>
                       ) : (
-                        <div key={goal.id}>
-                          Goal: {goal.goal} Deadline: {goal.deadLine} Start
-                          date: {goal.startDate}
+                        <div className="umcomplete-goal" key={goal.id}>
+                          {goal.goal} Deadline: {goal.deadLine} Start date:{" "}
+                          {goal.startDate}
                           {/* End Date: {goal.endDate} */}
                           <button
                             id={goal.id}
@@ -410,7 +415,7 @@ const SkillView = () => {
               <div className="compo">
                 <h4>Exp Entries</h4>
                 <hr />
-                Add experience: How many hours did you put in the dojo?
+                Add experience: How many hours did you put in?
                 <input
                   type="number"
                   min={0}
@@ -446,22 +451,22 @@ const SkillView = () => {
                 >
                   Add Exp
                 </button>
-                {skill.expEntries.map((entry) => {
-                  return (
-                    <div key={entry.id}>
-                      ID: {entry.id}....EXP: {entry.exp}....Date:{" "}
-                      {entry.timeEntry}
-                      <button
-                        id={entry.id}
-                        onClick={(e) => {
-                          handleDeleteEntry(e);
-                        }}
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  );
-                })}
+                <div className="entries-window">
+                  <table>
+                    <tr>
+                      <th>Date</th>
+                      <th>EXP</th>
+                    </tr>
+                    {skill.expEntries.map((entry) => {
+                      return (
+                        <tr id={entry.id}>
+                          <td>{entry.timeEntry}</td>
+                          <td>{entry.exp}</td>
+                        </tr>
+                      );
+                    })}
+                  </table>
+                </div>
               </div>
             </div>
             <div className="main-right">
@@ -476,12 +481,18 @@ const SkillView = () => {
                     setExpSmaLength(e.target.value);
                   }}
                 />
+              </div>
+              <div className="compo">
                 <LinePlot data={expGraph} dataName={"exp"} smaName={"sma"} />
+              </div>
+              <div className="compo">
                 <LinePlot
                   data={expGraph}
                   dataName={"focus"}
                   smaName={"focusSma"}
                 />
+              </div>
+              <div className="compo">
                 <LinePlot
                   data={totalExpGraph}
                   dataName={"exp"}

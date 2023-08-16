@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { currentLevel, getCurrentBar } from "../util/expToLevel";
+import ProgressBar from "./ProgressBar";
 
 function HomePageProfile(props) {
   const [level, setLevel] = useState(2);
@@ -7,7 +8,7 @@ function HomePageProfile(props) {
   const [currentBar, setCurrentBar] = useState(0);
   const [statTotalTime, setStatTotalTime] = useState(0);
   const [characterTotalExp, setCharacterTotalExp] = useState(0);
-  const [displaySKils, setDisplaySkills] = useState([]);
+  const [displaySKills, setDisplaySkills] = useState([]);
   const user = props.user;
 
   useEffect(() => {
@@ -67,7 +68,6 @@ function HomePageProfile(props) {
             alt="Character Icon"
           />
         </div>
-        <div className="character-skills">{displaySKils}</div>
         <div className="profile-stats">
           <p className="character-statistic">
             Total time training: {statTotalTime}
@@ -78,11 +78,7 @@ function HomePageProfile(props) {
         </div>
       </div>
       <div className="profile-progress-bar-container">
-        <progress
-          className="profile-progress-bar"
-          value={currentBar}
-          max={max}
-        ></progress>
+        <ProgressBar current={currentBar} max={max} />
       </div>
       <hr />
     </div>

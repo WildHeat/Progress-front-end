@@ -1,6 +1,7 @@
 import React from "react";
 import "./IndexPage.css";
 import ImageSlider from "../ImageSlider/ImageSlider";
+import InfoDeck from "./InfoDeck";
 
 function IndexPage() {
   const slides = [
@@ -14,7 +15,7 @@ function IndexPage() {
     },
     {
       title: "profile",
-      url: "https://fairwaysolitaire.zendesk.com/hc/article_attachments/115003749914/Profile.jpg",
+      url: "https://img.freepik.com/free-vector/hand-drawn-profile-icon-collection_52683-71949.jpg?w=2000",
     },
   ];
   return (
@@ -24,50 +25,27 @@ function IndexPage() {
           <img
             className="index-meditate"
             src={require("../../img/samurai.png")}
-            // src\img\Miyamoto-musashi-ink.png
             alt="Character Icon"
           />
         </div>
         <div className="top-text-container">
           <h3>AB Tracker</h3>
           <p>
-            There is much to LEARN in this world and Feedback and tracking your
-            progress is one KEY step to your journey.
+            AB Tracker is a way to track your progress and gain useful insights
+            on your skills and hobbies.
           </p>
         </div>
       </div>
       <div className="show-container">
         <ImageSlider slides={slides} />
       </div>
-      <div className="info-deck">
-        <div className="card-in-deck">
-          You can do some analytics on the different skills that you develop
-        </div>
-        <div className="card-in-deck">
-          Be able to use charts to analysis sessions
-        </div>
-        <div className="card-in-deck">
-          Increase the level of your character to emthasis the progress that you
-          have made
-        </div>
-        <div className="card-in-deck">
-          Share this information with your friends and family
-        </div>
-        <div className="card-in-deck">
-          You can do some analytics on the different skills that you develop
-        </div>
-        <div className="card-in-deck">
-          Be able to use charts to analysis sessions
-        </div>
-        <div className="card-in-deck">
-          Increase the level of your character to emthasis the progress that you
-          have made
-        </div>
-        <div className="card-in-deck">
-          Share this information with your friends and family
-        </div>
+      <InfoDeck />
+      <div className="begin-your-journey-container">
+        <h3>SO...ARE YOU READY TO START YOUR JOURNEY?</h3>
+        <a href="/register">
+          <button className="register-button">Register</button>
+        </a>
       </div>
-      <div className="begin-your-journey-container">Begin your journey</div>
     </div>
   );
 }

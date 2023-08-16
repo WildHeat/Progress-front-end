@@ -104,3 +104,12 @@ input {
   width: 100%;
   text-align: center;
 }
+
+.entries-window {
+  max-height: 40%;
+  overflow: scroll;
+}
+
+.umcomplete-goal:hover {
+  text-decoration: line-through;
+}
