@@ -16,7 +16,9 @@ const ProgressBar = ({ max, current }) => {
         className="progress-inner-container"
         style={{ width: `${percent}%` }}
       >
-        {Math.floor(current)} / {Math.floor(max)}
+        <p>
+          {Math.floor(current)} / {Math.floor(max)}
+        </p>
       </div>
     </div>
   );

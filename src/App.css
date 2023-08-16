@@ -205,8 +205,8 @@ header {
 .progress-inner-container {
   white-space: nowrap;
   height: 100%;
-  max-width: 50%;
   background-color: turquoise;
+  max-width: 100%;
   color: black;
   transition: all 3s ease-in 0s;
   text-align: end;
@@ -215,6 +215,11 @@ header {
 
 .progress-inner-container:hover {
   width: 2%;
+}
+.progress-inner-container p {
+  margin-bottom: 0;
+  padding: 0;
+  margin-left: calc(100% - 3vw);
 }
 
 table {
