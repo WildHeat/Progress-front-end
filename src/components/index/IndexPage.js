@@ -2,6 +2,7 @@ import React from "react";
 import "./IndexPage.css";
 import ImageSlider from "../ImageSlider/ImageSlider";
 import InfoDeck from "./InfoDeck";
+import Tunnel from "../Tunnel/Tunnel";
 
 function IndexPage() {
   const slides = [
@@ -46,6 +47,7 @@ function IndexPage() {
           <button className="register-button">Register</button>
         </a>
       </div>
+      <Tunnel />
     </div>
   );
 }
