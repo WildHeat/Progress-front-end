@@ -47,7 +47,45 @@ function IndexPage() {
           <button className="register-button">Register</button>
         </a>
       </div>
-      <Tunnel />
+      <div>
+        <Tunnel />
+        <div className="tunnel-card-deck">
+          <div className="tunnel-card">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Feugiat in fermentum posuere urna nec. Enim nec dui nunc mattis
+              enim ut tellus elementum sagittis.
+            </p>
+          </div>
+          <div className="tunnel-card">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Feugiat in fermentum posuere urna nec. Enim nec dui nunc mattis
+              enim ut tellus elementum sagittis.
+            </p>
+          </div>
+          <div className="tunnel-card">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Feugiat in fermentum posuere urna nec. Enim nec dui nunc mattis
+              enim ut tellus elementum sagittis.
+            </p>
+          </div>
+          <div className="tunnel-card">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Feugiat in fermentum posuere urna nec. Enim nec dui nunc mattis
+              enim ut tellus elementum sagittis.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* <InfoDeck /> */}
     </div>
   );
 }

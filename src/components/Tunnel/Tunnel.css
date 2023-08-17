@@ -1,8 +1,13 @@
 .tunnel-container {
+  z-index: -1;
+  overflow: hidden;
+  position: absolute;
   display: flex;
   width: 100%;
   height: 100vh;
-  background-color: black;
+  max-width: 100vw;
+  height: 100vhh;
+  background-color: rgb(32, 32, 32);
 }
 
 .center-container {
