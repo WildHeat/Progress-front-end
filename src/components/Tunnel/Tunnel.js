@@ -7,7 +7,7 @@ const Tunnel = () => {
   const circleStyle = {
     transform: `translate(${mousePosition.x / 50}px, ${
       mousePosition.y / 50
-    }px) scale(1.5)`,
+    }px) scale(1.8)`,
   };
 
   const handleMouseMove = (event) => {
@@ -15,9 +15,10 @@ const Tunnel = () => {
     const divRect = event.target.getBoundingClientRect();
     const centerX = divRect.width / 2;
     const centerY = divRect.height / 2;
-    const offsetX = clientX - divRect.left - centerX;
-    const offsetY = clientY - divRect.top - centerY;
-
+    const offsetX = clientX - divRect.left - centerX - 125;
+    const offsetY = clientY - divRect.top - centerY - 125;
+    console.log("x:" + offsetX);
+    console.log("y:" + offsetY);
     setMousePosition({ x: offsetX, y: offsetY });
   };
 
@@ -34,10 +35,12 @@ const Tunnel = () => {
         <div className="circle red-circle most-inner" style={circleStyle}>
           <div className="circle white-circle inner" style={circleStyle}>
             <div className="circle red-circle outer" style={circleStyle}>
-              <div
-                className="circle white-circle most-outer"
-                style={circleStyle}
-              ></div>
+              <div className="circle white-circle outer" style={circleStyle}>
+                <div
+                  className="circle red-circle most-outer"
+                  style={{ ...circleStyle, border: "solid 2px red" }}
+                ></div>
+              </div>
             </div>
           </div>
         </div>

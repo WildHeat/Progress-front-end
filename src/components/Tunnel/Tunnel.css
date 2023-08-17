@@ -1,27 +1,30 @@
 .tunnel-container {
   display: flex;
-
   width: 100%;
   height: 100vh;
-  background-color: aqua;
+  background-color: black;
 }
 
 .center-container {
   margin: auto;
-  width: 5rem;
+  width: 1rem;
 }
 
 .circle {
   transition: all 0.1s ease 0s;
-  width: 5rem;
-  height: 5rem;
+  width: 1rem;
+  height: 1rem;
   border-radius: 50%;
 }
 
 .red-circle {
-  border: solid 1px red;
+  border: solid 3px red;
 }
 
 .white-circle {
-  border: solid 1px white;
+  border: solid 3px white;
+}
+
+.most-inner {
+  background-color: red;
 }
