@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./IndexPage.css";
 import ImageSlider from "../ImageSlider/ImageSlider";
 import InfoDeck from "./InfoDeck";
@@ -19,10 +19,34 @@ function IndexPage() {
       url: "https://img.freepik.com/free-vector/hand-drawn-profile-icon-collection_52683-71949.jpg?w=2000",
     },
   ];
+
+  const updateHiddenFunction = (event) => {
+    const hiddenElements = document.querySelectorAll(".hidden");
+    hiddenElements.forEach((ele) => {
+      const elementRect = ele.getBoundingClientRect();
+      if (
+        elementRect.top + elementRect.height / 2 < window.innerHeight &&
+        elementRect.top + elementRect.height / 2 > 0
+      ) {
+        ele.classList.add("show");
+      } else {
+        ele.classList.remove("show");
+      }
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", updateHiddenFunction);
+
+    return () => {
+      window.removeEventListener("scroll", updateHiddenFunction);
+    };
+  }, []);
+
   return (
     <div className="index-page-container">
       <div className="top-content">
-        <div className="image-container">
+        <div className="image-container hidden">
           <img
             className="index-meditate"
             src={require("../../img/samurai.png")}
@@ -37,17 +61,17 @@ function IndexPage() {
           </p>
         </div>
       </div>
-      <div className="show-container">
+      <div className="show-container hidden">
         <ImageSlider slides={slides} />
       </div>
       <InfoDeck />
-      <div className="begin-your-journey-container">
+      <div className="begin-your-journey-container ">
         <h3>SO...ARE YOU READY TO START YOUR JOURNEY?</h3>
         <a href="/register">
           <button className="register-button">Register</button>
         </a>
       </div>
-      <div>
+      <div className="">
         <Tunnel />
         <div className="tunnel-card-deck">
           <div className="tunnel-card">

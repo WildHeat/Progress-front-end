@@ -42,8 +42,8 @@ const Tunnel = () => {
   }, []);
 
   const circleStyle = {
-    transform: `translate(${mousePoitionRelativeToCenterCircle.x / 700}em, ${
-      mousePoitionRelativeToCenterCircle.y / 700
+    transform: `translate(${mousePoitionRelativeToCenterCircle.x / 1000}em, ${
+      mousePoitionRelativeToCenterCircle.y / 1000
     }em) scale(1.8)`,
   };
 

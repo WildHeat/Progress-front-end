@@ -129,10 +129,10 @@ const SkillView = () => {
     }
   }, [skill, expSmaLength]);
 
-  function handleDeleteEntry(e) {
+  function handleDeleteEntry(id) {
     var tempSkill = skill;
     tempSkill.expEntries = tempSkill.expEntries.filter((expEntry) => {
-      return expEntry.id !== Number(e.target.id);
+      return expEntry.id !== Number(id);
     });
 
     fetch("/api/v1/skills", {
@@ -143,11 +143,10 @@ const SkillView = () => {
       body: JSON.stringify(tempSkill),
     }).then(() => {
       setTimeout(() => {
-        fetch("/api/v1/expentries/" + e.target.id, {
+        fetch("/api/v1/expentries/" + id, {
           method: "DELETE",
         });
         setRefresh(true);
-        // window.location.replace(`/skills/${skillId}`);
       }, 500);
     });
   }
@@ -292,7 +291,7 @@ const SkillView = () => {
                 setShowEditName(!showEditName);
               }}
             >
-              Edit
+              Edit skill name
             </button>
             {showEditName ? (
               <>
@@ -456,12 +455,18 @@ const SkillView = () => {
                     <tr>
                       <th>Date</th>
                       <th>EXP</th>
+                      <th>Delete</th>
                     </tr>
                     {skill.expEntries.map((entry) => {
                       return (
                         <tr id={entry.id}>
                           <td>{entry.timeEntry}</td>
                           <td>{entry.exp}</td>
+                          <td>
+                            <button onClick={() => handleDeleteEntry(entry.id)}>
+                              Delete
+                            </button>
+                          </td>
                         </tr>
                       );
                     })}
