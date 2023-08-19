@@ -1,32 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  currentLevel,
-  expForLevel,
-  getCurrentBar,
-} from "../../util/expToLevel";
+import { currentLevel, getCurrentBar } from "../../util/expToLevel";
 import ProgressBar from "../ProgressBar";
 
-const Skill = ({ skill, exp, skillId }) => {
+const Skill = ({ skill, exp, skillId, goals }) => {
   const level = parseInt(currentLevel(exp, 100, 1.2), 10);
   var currentBarReturn = getCurrentBar(level, 100, 1.2, exp);
   var currentBar = currentBarReturn[0];
   var max = currentBarReturn[1];
-  // var currentLevelExp = expForLevel(level, 100, 1.2);
-  var nextLevelExp = expForLevel(level + 1, 100, 1.2);
-  // var max = nextLevelExp - currentLevelExp;
-  // var currentBar = exp - currentLevelExp;
+
+  var [goalToDisplay, setGoalToDisplay] = useState("");
+
+  useEffect(() => {
+    // console.log(goals);
+    if (goals.length > 0) {
+      for (let i = 0; i < goals.length; i++) {
+        if (!goals[i].complete) {
+          setGoalToDisplay(goals[i].goal);
+        }
+      }
+    }
+  }, [goals]);
 
   return (
     <div className="skill-box-content">
       <h3>
-        <Link to={"/skills/" + skillId}>{skill}</Link>
+        <Link to={"/skills/" + skillId}>{skill}</Link> [{level}]
       </h3>
-      <p>Level: {level}</p>
       <div className="progress-container">
         <ProgressBar current={currentBar} max={max} />
       </div>
-      EXP: {exp}/{parseInt(nextLevelExp)}
+      <div className="skill-box-goal">
+        {goalToDisplay !== "" ? "Uncomplete Goal:" + goalToDisplay : ""}
+      </div>
     </div>
   );
 };

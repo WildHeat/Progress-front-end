@@ -57,14 +57,6 @@ header {
   padding: 2em;
 }
 
-.first-three-skills {
-  display: flex;
-  justify-content: space-between;
-  color: white;
-  gap: 0.5em;
-  padding-inline: 0.5em;
-}
-
 .profile-container {
   display: flex;
   flex-wrap: wrap;
@@ -131,6 +123,13 @@ header {
   /* flex: 50%; */
 }
 
+.skill-box-goal {
+  padding-block: 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .all-skills-container {
   background-color: #ececec;
   display: flex;
@@ -165,6 +164,10 @@ header {
     width: 100%;
   }
 
+  .skill-delete-button {
+    display: inline;
+  }
+
   .primary-navigation {
     position: fixed;
     inset: 0 0 0 30%;
@@ -195,19 +198,34 @@ header {
   }
 }
 
+.main-progress-container {
+  display: flex;
+}
+
+.progress-exp {
+  background-color: rgb(46, 46, 46);
+  color: white;
+  max-height: 2rem;
+  margin-top: 1em;
+  margin-bottom: 0;
+  border: solid rgb(89, 158, 98);
+  border-radius: 10px 0px 0px 0px;
+}
+
 .progress-outer-container {
   margin-top: 1em;
   background-color: white;
   max-height: 2rem;
   width: 100%;
-  border-radius: 10px;
-  border: solid rgb(233, 255, 236);
+  border-radius: 0px 10px 10px 0;
+  border: solid rgb(89, 158, 98);
+  border-left: 0;
   color: rgb(255, 255, 255);
   overflow: visible;
 }
 
 .progress-inner-container {
-  border-radius: 10px;
+  border-radius: inherit;
   white-space: nowrap;
   height: 100%;
   background-color: turquoise;

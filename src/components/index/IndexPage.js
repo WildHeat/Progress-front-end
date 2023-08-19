@@ -46,7 +46,7 @@ function IndexPage() {
   return (
     <div className="index-page-container">
       <div className="top-content">
-        <div className="image-container hidden">
+        <div className="image-container show hidden">
           <img
             className="index-meditate"
             src={require("../../img/samurai.png")}

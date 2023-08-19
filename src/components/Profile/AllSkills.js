@@ -87,17 +87,16 @@ const AllSkills = (props) => {
     var listOfSkills = [];
     for (let i = 0; i < props.user.skills.length; i++) {
       listOfSkills.push(
-        <div className="skill-box">
+        <div className="skill-box" key={i}>
           <Skill
             skill={props.user.skills[i].name}
+            goals={props.user.skills[i].goals}
             exp={props.user.skills[i].exp}
             id={i}
             skillId={props.user.skills[i].id}
           />
-          {/* <button name={props.user.skills[i].id} id={i}>
-            Edit
-          </button> */}
           <button
+            className="skill-delete-button"
             id={i}
             name={props.user.skills[i].id}
             onClick={(e) => {
@@ -117,15 +116,18 @@ const AllSkills = (props) => {
       <h2 className="skills-title">Skills</h2>
       <div className="all-skills-container">{displaySkills()}</div>
       <div className="add-skill-container">
-        <label htmlFor="skillName">New skill name</label>
-        <input
-          name="skillName"
-          type="text"
-          value={newSkillName}
-          onChange={(e) => {
-            setNewSkillName(e.target.value);
-          }}
-        />
+        <label>
+          New skill name
+          <input
+            name="skillName"
+            type="text"
+            value={newSkillName}
+            onChange={(e) => {
+              setNewSkillName(e.target.value);
+            }}
+          />
+        </label>
+
         <div>
           <input
             type="submit"
