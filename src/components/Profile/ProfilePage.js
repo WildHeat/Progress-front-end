@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useLocalState } from "../util/useLocalStorage";
-import HomePageProfile from "./HomePageProfile.js";
+import { useLocalState } from "../../util/useLocalStorage";
+import ProfileSection from "./ProfileSection.js";
 import AllSkills from "./AllSkills.js";
 
-function Homepage() {
+function ProfilePage() {
   const [user, setUser] = useState("");
   const [jwt, setJwt] = useLocalState("jwt", "");
 
@@ -37,10 +37,10 @@ function Homepage() {
   return (
     <div>
       {user ? (
-        <>
-          <HomePageProfile user={user} />
+        <div>
+          <ProfileSection user={user} />
           <AllSkills user={user} />
-        </>
+        </div>
       ) : (
         <></>
       )}
@@ -48,4 +48,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default ProfilePage;

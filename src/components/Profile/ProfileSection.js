@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { currentLevel, getCurrentBar } from "../util/expToLevel";
-import ProgressBar from "./ProgressBar";
+import { currentLevel, getCurrentBar } from "../../util/expToLevel";
+import ProgressBar from "../ProgressBar";
 
-function HomePageProfile(props) {
+function ProfileSection(props) {
   const [level, setLevel] = useState(2);
   const [max, setMax] = useState(0);
   const [currentBar, setCurrentBar] = useState(0);
   const [statTotalTime, setStatTotalTime] = useState(0);
   const [characterTotalExp, setCharacterTotalExp] = useState(0);
-  const [displaySKills, setDisplaySkills] = useState([]);
   const user = props.user;
 
   useEffect(() => {
@@ -27,29 +26,6 @@ function HomePageProfile(props) {
       var currentBarReturn = getCurrentBar(level, 300, 1.5, totalExp);
       setCurrentBar(currentBarReturn[0]);
       setMax(currentBarReturn[1]);
-
-      let tempDisplaySkills = [];
-
-      tempDisplaySkills.push(
-        <h3 className="first-three-skills">
-          <span>Skill</span> <span>Level</span>
-        </h3>
-      );
-
-      for (let i = 0; i < user.skills.length && i !== 3; i++) {
-        tempDisplaySkills.push(
-          <h4 key={i} className="first-three-skills">
-            <span className="skill-name">{user.skills[i].name}</span>
-            <span>
-              {parseInt(currentLevel(user.skills[i].exp, 100, 1.2), 10)}
-            </span>
-          </h4>
-        );
-      }
-
-      setDisplaySkills(tempDisplaySkills);
-
-      // display first 3 skills if they exist
     }
   }, [user, level, statTotalTime]);
 
@@ -64,7 +40,7 @@ function HomePageProfile(props) {
         <div className="characterinfo">
           <img
             className="characterIcon"
-            src={require("../img/icon1.jpg")}
+            src={require("../../img/icon1.jpg")}
             alt="Character Icon"
           />
         </div>
@@ -85,4 +61,4 @@ function HomePageProfile(props) {
   );
 }
 
-export default HomePageProfile;
+export default ProfileSection;

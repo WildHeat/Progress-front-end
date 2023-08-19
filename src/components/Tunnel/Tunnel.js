@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
 import "./Tunnel.css";
 
 const Tunnel = () => {
@@ -50,22 +52,24 @@ const Tunnel = () => {
   return (
     <div id="tunnel" className="tunnel-container">
       <div className="center-container">
-        <div
-          id="center-cirle"
-          className="circle red-circle most-inner"
-          style={circleStyle}
-        >
-          <div className="circle white-circle inner" style={circleStyle}>
-            <div className="circle red-circle outer" style={circleStyle}>
-              <div className="circle white-circle outer" style={circleStyle}>
-                <div
-                  className="circle red-circle most-outer"
-                  style={{ ...circleStyle, border: "solid 3px red" }}
-                ></div>
+        <Link to="/register">
+          <div
+            id="center-cirle"
+            className="circle red-circle most-inner"
+            style={circleStyle}
+          >
+            <div className="circle white-circle inner" style={circleStyle}>
+              <div className="circle red-circle outer" style={circleStyle}>
+                <div className="circle white-circle outer" style={circleStyle}>
+                  <div
+                    className="circle red-circle most-outer"
+                    style={{ ...circleStyle, border: "solid 3px red" }}
+                  ></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </Link>
       </div>
     </div>
   );

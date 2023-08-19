@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Skill from "./Skill";
-import { getTodaysDate } from "../util/getTodaysDate";
+import { getTodaysDate } from "../../util/getTodaysDate";
 
 const AllSkills = (props) => {
   const [newSkillName, setNewSkillName] = useState("");

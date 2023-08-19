@@ -5,11 +5,11 @@ import AddUserForm from "./components/AddUserForm";
 import PageNotFound from "./components/PageNotFound";
 import PrivateRoute from "./components/PrivateRoute";
 import Login from "./components/Login";
-import Homepage from "./components/Homepage";
 import Logout from "./components/Logout";
 import Header from "./components/Header";
 import IndexPage from "./components/index/IndexPage";
 import SkillView from "./components/SkillView/SkillView";
+import ProfilePage from "./components/Profile/ProfilePage";
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
             path="/profile"
             element={
               <PrivateRoute>
-                <Homepage />
+                <ProfilePage />
               </PrivateRoute>
             }
           />

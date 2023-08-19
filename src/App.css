@@ -1,3 +1,6 @@
+* {
+  font-family: "Oswald", sans-serif;
+}
 header {
   display: flex;
   align-items: center;
@@ -193,6 +196,7 @@ header {
 }
 
 .progress-outer-container {
+  margin-top: 1em;
   background-color: white;
   max-height: 2rem;
   width: 100%;
@@ -220,7 +224,7 @@ header {
 .progress-inner-container p {
   margin-bottom: 0;
   padding: 0;
-  margin-left: calc(100% - 3vw);
+  margin-left: max(calc(100% - 3vw), 0);
 }
 
 table {

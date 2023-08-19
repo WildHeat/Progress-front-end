@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Header() {
   const [showNav, setShowNav] = useState(false);
@@ -24,14 +25,14 @@ function Header() {
       return (
         <>
           <li className="nav-item">
-            <a className="nav-link" href="/register">
+            <Link className="nav-link" to="/register">
               Register
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/login">
+            <Link className="nav-link" to="/login">
               Login
-            </a>
+            </Link>
           </li>
         </>
       );
@@ -39,14 +40,14 @@ function Header() {
     return (
       <>
         <li className="nav-item">
-          <a className="nav-link" href="/profile">
+          <Link className="nav-link" to="/profile">
             Profile
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/logout">
+          <Link className="nav-link" to="/logout">
             Logout
-          </a>
+          </Link>
         </li>
       </>
     );
@@ -54,9 +55,9 @@ function Header() {
 
   return (
     <header>
-      <a className="logo" href="/">
+      <Link className="logo" to="/">
         <h3 className="logo">AB Tracker</h3>
-      </a>
+      </Link>
       <button
         className="mobile-nav-toggle"
         aria-controls="primary-navigation"
@@ -78,14 +79,14 @@ function Header() {
           }
         >
           <li className="nav-item">
-            <a className="nav-link" href="/">
+            <Link className="nav-link" to="/">
               Home
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/about">
+            <Link className="nav-link" to="/about">
               About
-            </a>
+            </Link>
           </li>
 
           {isLoggedInNavBar()}

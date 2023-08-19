@@ -65,8 +65,11 @@ function IndexPage() {
         <ImageSlider slides={slides} />
       </div>
       <InfoDeck />
-      <div className="begin-your-journey-container ">
-        <h3>SO...ARE YOU READY TO START YOUR JOURNEY?</h3>
+      <div className="begin-your-journey-container">
+        <h3 className="begin-your-journey">
+          SO...ARE YOU READY TO START YOUR JOURNEY? HIT THE CENTER OF THE TARGET
+          TO REGISTER!
+        </h3>
         <a href="/register">
           <button className="register-button">Register</button>
         </a>

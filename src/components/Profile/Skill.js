@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { currentLevel, expForLevel, getCurrentBar } from "../util/expToLevel";
-import ProgressBar from "./ProgressBar";
+import {
+  currentLevel,
+  expForLevel,
+  getCurrentBar,
+} from "../../util/expToLevel";
+import ProgressBar from "../ProgressBar";
 
 const Skill = ({ skill, exp, skillId }) => {
   const level = parseInt(currentLevel(exp, 100, 1.2), 10);

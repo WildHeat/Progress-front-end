@@ -49,11 +49,9 @@ const SkillView = () => {
         return response.json();
       }
     });
-    //.then((body) => {});
     setTimeout(() => {
       setRefresh(true);
     }, 400);
-    // window.location.href.replace(`/skills/${skillId}`);
   }
 
   useEffect(() => {
@@ -75,7 +73,7 @@ const SkillView = () => {
         });
       setRefresh(false);
     }
-  }, [refresh]);
+  }, [refresh, skillId, jwt]);
 
   useEffect(() => {
     let tempTotalGraph = [];
@@ -220,7 +218,6 @@ const SkillView = () => {
             body: JSON.stringify(skill),
           });
           setRefresh(true);
-          // window.location.replace(`/skills/${skillId}`);
         }, 800);
       });
   }
@@ -242,7 +239,6 @@ const SkillView = () => {
           method: "DELETE",
         });
         setRefresh(true);
-        // window.location.replace(`/skills/${skillId}`);
       }, 500);
     });
   }
