@@ -5,7 +5,7 @@ import ProgressBar from "../ProgressBar";
 function ProfileSection(props) {
   const [level, setLevel] = useState(0);
   const [max, setMax] = useState(2);
-  const [currentBar, setCurrentBar] = useState(1);
+  const [currentBar, setCurrentBar] = useState();
   const [statTotalTime, setStatTotalTime] = useState(0);
   const [characterTotalExp, setCharacterTotalExp] = useState(0);
   const user = props.user;

@@ -2,6 +2,7 @@
   font-family: "Oswald", sans-serif;
 }
 header {
+  background-color: #e7bb41;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -41,7 +42,7 @@ header {
 }
 
 .home-page-profile-container {
-  background-color: #284b63;
+  background-color: #44bba4;
   padding: 2em;
 }
 
@@ -204,21 +205,21 @@ header {
 
 .progress-exp {
   background-color: rgb(46, 46, 46);
-  color: white;
+  color: #e7e5df;
   max-height: 2rem;
   margin-top: 1em;
   margin-bottom: 0;
-  border: solid rgb(89, 158, 98);
+  border: solid #e7e5df;
   border-radius: 10px 0px 0px 0px;
 }
 
 .progress-outer-container {
   margin-top: 1em;
-  background-color: white;
+  background-color: #e7e5df;
   max-height: 2rem;
   width: 100%;
   border-radius: 0px 10px 10px 0;
-  border: solid rgb(89, 158, 98);
+  border: solid #e7e5df;
   border-left: 0;
   color: rgb(255, 255, 255);
   overflow: visible;
@@ -228,7 +229,7 @@ header {
   border-radius: inherit;
   white-space: nowrap;
   height: 100%;
-  background-color: turquoise;
+  background-color: #e7bb41;
   max-width: 100%;
   color: black;
   transition: all 3s ease-in 0s;
