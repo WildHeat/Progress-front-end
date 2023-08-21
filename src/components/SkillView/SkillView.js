@@ -33,11 +33,11 @@ const SkillView = () => {
 
   const [expGraph, setExpGraph] = useState();
 
-  function handleEditNameSubmit() {
+  async function handleEditNameSubmit() {
     let newSkill = skill;
     newSkill.name = editName;
 
-    fetch("/api/v1/skills", {
+    await fetch("/api/v1/skills", {
       headers: {
         "Content-type": "application/json",
         authorization: "Bearer " + jwt,
@@ -49,30 +49,31 @@ const SkillView = () => {
         return response.json();
       }
     });
-    setTimeout(() => {
-      setRefresh(true);
-    }, 400);
+    setRefresh(true);
   }
 
   useEffect(() => {
-    if (refresh) {
-      fetch(`/api/v1/skills/${skillId}`, {
-        headers: {
-          "Content-type": "application/json",
-          authorization: "Bearer " + jwt,
-        },
-        method: "GET",
-      })
-        .then((response) => {
-          if (response.status === 200) {
-            return response.json();
-          }
+    async function fetchData() {
+      if (refresh) {
+        await fetch(`/api/v1/skills/${skillId}`, {
+          headers: {
+            "Content-type": "application/json",
+            authorization: "Bearer " + jwt,
+          },
+          method: "GET",
         })
-        .then((skillData) => {
-          setSkill(skillData);
-        });
-      setRefresh(false);
+          .then((response) => {
+            if (response.status === 200) {
+              return response.json();
+            }
+          })
+          .then((skillData) => {
+            setSkill(skillData);
+          });
+        setRefresh(false);
+      }
     }
+    fetchData();
   }, [refresh, skillId, jwt]);
 
   useEffect(() => {
@@ -127,13 +128,13 @@ const SkillView = () => {
     }
   }, [skill, expSmaLength]);
 
-  function handleDeleteEntry(id) {
+  async function handleDeleteEntry(id) {
     var tempSkill = skill;
     tempSkill.expEntries = tempSkill.expEntries.filter((expEntry) => {
       return expEntry.id !== Number(id);
     });
 
-    fetch("/api/v1/skills", {
+    await fetch("/api/v1/skills", {
       headers: {
         "Content-type": "application/json",
       },
@@ -149,12 +150,12 @@ const SkillView = () => {
     });
   }
 
-  function handleAddExp() {
+  async function handleAddExp() {
     if (addExpLength !== 0 && addExpFocus > 0) {
       // the base exp per hour will be 100
       const addExpValue = addExpLength * 50 * (addExpFocus / 2);
 
-      fetch("/api/v1/expentries", {
+      await fetch("/api/v1/expentries", {
         headers: {
           "Content-type": "application/json",
         },
@@ -171,26 +172,22 @@ const SkillView = () => {
             return response.json();
           }
         })
-        .then((expEntry) => {
-          setTimeout(() => {
-            console.log("NOW UPDATING EXP");
-            skill.expEntries.push(expEntry);
-            fetch("/api/v1/skills", {
-              headers: {
-                "Content-type": "application/json",
-              },
-              method: "PUT",
-              body: JSON.stringify(skill),
-            });
-            // setRefresh(true);
-            setRefresh(true);
-          }, 800);
+        .then(async (expEntry) => {
+          skill.expEntries.push(expEntry);
+          await fetch("/api/v1/skills", {
+            headers: {
+              "Content-type": "application/json",
+            },
+            method: "PUT",
+            body: JSON.stringify(skill),
+          });
+          setRefresh(true);
         });
     }
   }
 
-  function handleAddGoal() {
-    fetch("/api/v1/goals", {
+  async function handleAddGoal() {
+    await fetch("/api/v1/goals", {
       headers: {
         "Content-type": "application/json",
       },
@@ -207,56 +204,51 @@ const SkillView = () => {
           return response.json();
         }
       })
-      .then((goal) => {
-        setTimeout(() => {
-          skill.goals.push(goal);
-          fetch("/api/v1/skills", {
-            headers: {
-              "Content-type": "application/json",
-            },
-            method: "PUT",
-            body: JSON.stringify(skill),
-          });
-          setRefresh(true);
-        }, 800);
+      .then(async (goal) => {
+        skill.goals.push(goal);
+        await fetch("/api/v1/skills", {
+          headers: {
+            "Content-type": "application/json",
+          },
+          method: "PUT",
+          body: JSON.stringify(skill),
+        });
+        setRefresh(true);
       });
   }
-  function handleDeleteGoal(e) {
+
+  async function handleDeleteGoal(e) {
     var tempSkill = skill;
     tempSkill.goals = tempSkill.goals.filter((goal) => {
       return goal.id !== Number(e.target.id);
     });
 
-    fetch("/api/v1/skills", {
+    await fetch("/api/v1/skills", {
       headers: {
         "Content-type": "application/json",
       },
       method: "PUT",
       body: JSON.stringify(tempSkill),
-    }).then(() => {
-      setTimeout(() => {
-        fetch("/api/v1/goals/" + e.target.id, {
-          method: "DELETE",
-        });
-        setRefresh(true);
-      }, 500);
+    }).then(async () => {
+      await fetch("/api/v1/goals/" + e.target.id, {
+        method: "DELETE",
+      });
+      setRefresh(true);
     });
   }
 
-  function handleGoalChange(e) {
+  async function handleGoalChange(e) {
     var tempGoal = skill.goals.find((goal) => "" + goal.id === e.target.id);
     tempGoal.complete = !tempGoal.complete;
 
-    fetch("/api/v1/goals", {
+    await fetch("/api/v1/goals", {
       headers: {
         "Content-type": "application/json",
       },
       method: "PUT",
       body: JSON.stringify(tempGoal),
     }).then(() => {
-      setTimeout(() => {
-        setRefresh(true);
-      }, 500);
+      setRefresh(true);
     });
   }
 
@@ -279,7 +271,9 @@ const SkillView = () => {
       {skill ? (
         <>
           <div className="compo exp-bar">
-            {skill.name} - {level}
+            <h2>
+              {skill.name} [{level}]
+            </h2>
             <ProgressBar current={currentBar} max={max} />
             <br />
             <button
@@ -301,7 +295,7 @@ const SkillView = () => {
                     handleEditNameSubmit();
                   }}
                 >
-                  Update Name
+                  Update
                 </button>
               </>
             ) : (
@@ -321,60 +315,85 @@ const SkillView = () => {
               <div className="compo">
                 <h4>Goals:</h4>
                 <hr />
-                {skill.goals.map((goal) => {
-                  return (
-                    <>
-                      {goal.complete ? (
-                        <s>
-                          <div className="completed-goal" key={goal.id}>
-                            {goal.goal} Deadline: {goal.deadLine} Start date:{" "}
-                            {goal.startDate}
-                            End Date: {goal.endDate}
-                            <button
-                              id={goal.id}
-                              onClick={(e) => {
-                                handleGoalChange(e);
-                              }}
-                            >
-                              COMPLETED!
-                            </button>
-                            <button
-                              id={goal.id}
-                              onClick={(e) => {
-                                handleDeleteGoal(e);
-                              }}
-                            >
-                              Delete
-                            </button>
-                          </div>
-                        </s>
-                      ) : (
-                        <div className="umcomplete-goal" key={goal.id}>
-                          {goal.goal} Deadline: {goal.deadLine} Start date:{" "}
-                          {goal.startDate}
-                          {/* End Date: {goal.endDate} */}
-                          <button
-                            id={goal.id}
-                            onClick={(e) => {
-                              handleGoalChange(e);
-                            }}
-                          >
-                            Completed?
-                          </button>
-                          <button
-                            id={goal.id}
-                            onClick={(e) => {
-                              handleDeleteGoal(e);
-                            }}
-                          >
-                            Delete
-                          </button>
-                        </div>
-                      )}
-                    </>
-                  );
-                })}
+                <table>
+                  <tr>
+                    <th>Goal</th>
+                    <th>Deadline</th>
+                    <th>Start Date</th>
+                    <th>Complete Date</th>
+                    <th>Status</th>
+                    <th>Delete</th>
+                  </tr>
+                  {skill.goals.map((goal) => {
+                    return (
+                      <>
+                        {goal.complete ? (
+                          <tr key={goal.id}>
+                            <td>
+                              <s>{goal.goal}</s>
+                            </td>
+                            <td>{goal.deadLine}</td>
+                            <td>{goal.startDate}</td>
+                            <td>{goal.endDate}</td>
+                            <td>
+                              <button
+                                id={goal.id}
+                                onClick={(e) => {
+                                  handleGoalChange(e);
+                                }}
+                              >
+                                UNCOMPLETE
+                              </button>
+                            </td>
+                            <td>
+                              <button
+                                id={goal.id}
+                                onClick={(e) => {
+                                  handleDeleteGoal(e);
+                                }}
+                              >
+                                Delete
+                              </button>
+                            </td>
+                          </tr>
+                        ) : (
+                          <tr key={goal.id}>
+                            <td>{goal.goal}</td>
+                            <td>{goal.deadLine}</td>
+                            <td>{goal.startDate}</td>
+                            <td>{goal.endDate}</td>
+                            <td>
+                              <button
+                                id={goal.id}
+                                onClick={(e) => {
+                                  handleGoalChange(e);
+                                }}
+                              >
+                                COMPLETED!
+                              </button>
+                            </td>
+                            <td>
+                              <button
+                                id={goal.id}
+                                onClick={(e) => {
+                                  handleDeleteGoal(e);
+                                }}
+                              >
+                                Delete
+                              </button>
+                            </td>
+                          </tr>
+                        )}
+                      </>
+                    );
+                  })}
+                </table>
+                <br />
+                <h5>Add new goal</h5>
+                <hr />
+                <label htmlFor="goal-name">Goal:</label>
                 <input
+                  id="goal-name"
                   className="goal-text-box"
                   type="text"
                   value={addGoalInfo}
@@ -383,22 +402,26 @@ const SkillView = () => {
                   }}
                 />
                 <br />
-                Start date:
+                <label htmlFor="start-date">Start date:</label>
                 <input
+                  id="start-date"
                   type="date"
                   value={addGoalStartDate}
                   onChange={(e) => {
                     setAddGoalStartDate(e.target.value);
                   }}
                 />
-                DeadLine:
+                <br />
+                <label htmlFor="deadline">DeadLine:</label>
                 <input
+                  id="deadline"
                   type="date"
                   value={addGoalDeadLine}
                   onChange={(e) => {
                     setAddGoalDeadLine(e.target.value);
                   }}
                 />
+                <br />
                 <button
                   onClick={() => {
                     handleAddGoal();
@@ -407,11 +430,16 @@ const SkillView = () => {
                   Add new goal
                 </button>
               </div>
+
               <div className="compo">
                 <h4>Exp Entries</h4>
                 <hr />
-                Add experience: How many hours did you put in?
+                <h6>Add new experience </h6>
+                <label htmlFor="add-exp-hours">
+                  How many hours did you put in?
+                </label>
                 <input
+                  id="add-exp-hours"
                   type="number"
                   min={0}
                   value={addExpLength}
@@ -420,8 +448,11 @@ const SkillView = () => {
                   }}
                 />
                 <br />
-                Out of 5 how focused were you? (1-5)
+                <label htmlFor="add-exp-focus">
+                  How focused were you? (1-5)
+                </label>
                 <input
+                  id="add-exp-focus"
                   type="number"
                   min={1}
                   max={5}
@@ -431,7 +462,9 @@ const SkillView = () => {
                   }}
                 />
                 <br />
+                <label htmlFor="add-exp-date">Date:</label>
                 <input
+                  id="add-exp-date"
                   type="date"
                   value={addExpDate}
                   onChange={(e) => {
@@ -476,6 +509,7 @@ const SkillView = () => {
                 <hr />
                 EXP SMA LENGTH
                 <input
+                  min={1}
                   value={expSmaLength}
                   type="number"
                   onChange={(e) => {
@@ -484,9 +518,13 @@ const SkillView = () => {
                 />
               </div>
               <div className="compo">
+                <h4>EXP plot</h4>
+                <hr />
                 <LinePlot data={expGraph} dataName={"exp"} smaName={"sma"} />
               </div>
               <div className="compo">
+                <h4>Focus plot</h4>
+                <hr />
                 <LinePlot
                   data={expGraph}
                   dataName={"focus"}
@@ -494,6 +532,8 @@ const SkillView = () => {
                 />
               </div>
               <div className="compo">
+                <h4>Total EXP plot</h4>
+                <hr />
                 <LinePlot
                   data={totalExpGraph}
                   dataName={"exp"}

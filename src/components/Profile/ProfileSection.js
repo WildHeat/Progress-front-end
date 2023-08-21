@@ -3,14 +3,15 @@ import { currentLevel, getCurrentBar } from "../../util/expToLevel";
 import ProgressBar from "../ProgressBar";
 
 function ProfileSection(props) {
-  const [level, setLevel] = useState(2);
-  const [max, setMax] = useState(0);
-  const [currentBar, setCurrentBar] = useState(0);
+  const [level, setLevel] = useState(0);
+  const [max, setMax] = useState(2);
+  const [currentBar, setCurrentBar] = useState(1);
   const [statTotalTime, setStatTotalTime] = useState(0);
   const [characterTotalExp, setCharacterTotalExp] = useState(0);
   const user = props.user;
 
   useEffect(() => {
+    console.log("Running");
     if (user && user.skills.length !== 0) {
       var totalExp = 0;
       var totalTime = 0;
@@ -24,10 +25,12 @@ function ProfileSection(props) {
       setCharacterTotalExp(totalExp);
       setLevel(parseInt(currentLevel(totalExp, 300, 1.5), 10));
       var currentBarReturn = getCurrentBar(level, 300, 1.5, totalExp);
+      console.log("Current bar" + currentBar);
+      console.log("Max" + max);
       setCurrentBar(currentBarReturn[0]);
       setMax(currentBarReturn[1]);
     }
-  }, [user, level, statTotalTime]);
+  }, [currentBar, level, max, user]);
 
   return (
     <div className="home-page-profile-container">
