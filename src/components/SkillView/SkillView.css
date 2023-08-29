@@ -1,4 +1,3 @@
-/* Basic CSS for SkillView component */
 div {
   font-family: Arial, sans-serif;
 }
@@ -55,9 +54,6 @@ input {
   display: flex;
   flex-direction: column;
   gap: 1em;
-  /* background-color: white;
-  border-radius: 23px; */
-  /* border-style: solid; */
 }
 
 .goal-text-box {
@@ -70,10 +66,33 @@ input {
   border-radius: 23px;
   border: solid rgb(235, 235, 235);
   width: 100%;
+  position: relative;
+}
+
+.compo::before,
+.compo::after {
+  position: absolute;
+  top: 0.25em;
+  right: 0.25em;
+  background: gray;
+}
+
+.compo::before {
+  opacity: 0;
+  content: attr(data-tooltip);
+  width: max-content;
+  max-width: 40%;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  color: white;
+}
+
+.compo:hover::before {
+  opacity: 1;
 }
 
 .skill-view-container {
-  padding-inline: 10%;
+  padding: 3vh 10%;
 }
 
 @media (max-width: 40em) {
@@ -92,12 +111,9 @@ input {
   flex-direction: column;
   justify-content: flex-start;
   gap: 1em;
-  /* border-style: solid; */
 }
 
 .main-container {
-  /* border-style: solid; */
-  /* padding: 5%; */
   display: flex;
   gap: 1em;
   flex-wrap: wrap;

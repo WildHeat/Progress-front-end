@@ -25,8 +25,8 @@ function IndexPage() {
     hiddenElements.forEach((ele) => {
       const elementRect = ele.getBoundingClientRect();
       if (
-        elementRect.top + elementRect.height / 2 < window.innerHeight &&
-        elementRect.top + elementRect.height / 2 > 0
+        elementRect.top + elementRect.height / 2 - 100 < window.innerHeight &&
+        elementRect.top + elementRect.height / 2 + 100 > 0
       ) {
         ele.classList.add("show");
       } else {

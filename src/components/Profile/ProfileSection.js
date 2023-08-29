@@ -59,6 +59,9 @@ function ProfileSection(props) {
       <div className="profile-progress-bar-container">
         <ProgressBar current={currentBar} max={max} />
       </div>
+      <div className="progress-bar-sword">
+        <div className="progress-bar-sword-inner"></div>
+      </div>
       <hr />
     </div>
   );

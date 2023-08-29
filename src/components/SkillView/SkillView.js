@@ -304,7 +304,12 @@ const SkillView = () => {
           </div>
           <div className="main-container">
             <div className="main-left">
-              <div className="compo">
+              <div
+                className="compo"
+                data-tooltip={
+                  "Overall statistics about your involvement in this skill."
+                }
+              >
                 <h4>Stats</h4>
                 <hr />
                 <p>Average time: {round(averageTime)}h</p>
