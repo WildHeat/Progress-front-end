@@ -9,9 +9,9 @@ function ProfileSection(props) {
   const [statTotalTime, setStatTotalTime] = useState(0);
   const [characterTotalExp, setCharacterTotalExp] = useState(0);
   const user = props.user;
+  const [progressBarIsReady, setProgressBarIsReady] = useState(false);
 
   useEffect(() => {
-    console.log("Running");
     if (user && user.skills.length !== 0) {
       var totalExp = 0;
       var totalTime = 0;
@@ -29,6 +29,7 @@ function ProfileSection(props) {
       console.log("Max" + max);
       setCurrentBar(currentBarReturn[0]);
       setMax(currentBarReturn[1]);
+      setProgressBarIsReady(true);
     }
   }, [currentBar, level, max, user]);
 
@@ -56,12 +57,14 @@ function ProfileSection(props) {
           </p>
         </div>
       </div>
-      <div className="profile-progress-bar-container">
-        <ProgressBar current={currentBar} max={max} />
-      </div>
-      <div className="progress-bar-sword">
-        <div className="progress-bar-sword-inner"></div>
-      </div>
+      {progressBarIsReady ? (
+        <div className="profile-progress-bar-container">
+          <ProgressBar current={currentBar} max={max} />
+        </div>
+      ) : (
+        <>Loading {max}</>
+      )}
+
       <hr />
     </div>
   );

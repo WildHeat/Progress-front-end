@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 
 const ProgressBar = ({ max, current }) => {
-  const [percent, setPecent] = useState(0);
+  const [percent, setPecent] = useState(1);
 
   useEffect(() => {
-    const randomTime = Math.floor(Math.random() * 500);
-    setTimeout(() => {
-      setPecent((Math.floor(current) / Math.floor(max)) * 100);
-    }, 500 + randomTime);
+    setPecent((Math.floor(current) / Math.floor(max)) * 100);
   }, [current, max]);
 
   return (

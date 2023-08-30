@@ -7,6 +7,7 @@ import { useLocalState } from "../../util/useLocalStorage";
 import { getTodaysDate } from "../../util/getTodaysDate";
 import { currentLevel, getCurrentBar } from "../../util/expToLevel";
 import ProgressBar from "../ProgressBar";
+import ToolTip from "../ToolTip";
 
 const SkillView = () => {
   const [skill, setSkill] = useState(null);
@@ -304,95 +305,97 @@ const SkillView = () => {
           </div>
           <div className="main-container">
             <div className="main-left">
-              <div
-                className="compo"
-                data-tooltip={
-                  "Overall statistics about your involvement in this skill."
-                }
-              >
+              <div className="compo">
                 <h4>Stats</h4>
                 <hr />
                 <p>Average time: {round(averageTime)}h</p>
                 <p>Average focus: {round(averageFocus)}</p>
                 <p>Total time: {round(totalTime)}</p>
                 <p>Total EXP: {totalExp}</p>
+                <ToolTip
+                  tooltip={
+                    "Some stats for the nerds ans some more about somethihng"
+                  }
+                />
               </div>
               <div className="compo">
                 <h4>Goals:</h4>
                 <hr />
-                <table>
-                  <tr>
-                    <th>Goal</th>
-                    <th>Deadline</th>
-                    <th>Start Date</th>
-                    <th>Complete Date</th>
-                    <th>Status</th>
-                    <th>Delete</th>
-                  </tr>
-                  {skill.goals.map((goal) => {
-                    return (
-                      <>
-                        {goal.complete ? (
-                          <tr key={goal.id}>
-                            <td>
-                              <s>{goal.goal}</s>
-                            </td>
-                            <td>{goal.deadLine}</td>
-                            <td>{goal.startDate}</td>
-                            <td>{goal.endDate}</td>
-                            <td>
-                              <button
-                                id={goal.id}
-                                onClick={(e) => {
-                                  handleGoalChange(e);
-                                }}
-                              >
-                                UNCOMPLETE
-                              </button>
-                            </td>
-                            <td>
-                              <button
-                                id={goal.id}
-                                onClick={(e) => {
-                                  handleDeleteGoal(e);
-                                }}
-                              >
-                                Delete
-                              </button>
-                            </td>
-                          </tr>
-                        ) : (
-                          <tr key={goal.id}>
-                            <td>{goal.goal}</td>
-                            <td>{goal.deadLine}</td>
-                            <td>{goal.startDate}</td>
-                            <td>{goal.endDate}</td>
-                            <td>
-                              <button
-                                id={goal.id}
-                                onClick={(e) => {
-                                  handleGoalChange(e);
-                                }}
-                              >
-                                COMPLETED!
-                              </button>
-                            </td>
-                            <td>
-                              <button
-                                id={goal.id}
-                                onClick={(e) => {
-                                  handleDeleteGoal(e);
-                                }}
-                              >
-                                Delete
-                              </button>
-                            </td>
-                          </tr>
-                        )}
-                      </>
-                    );
-                  })}
-                </table>
+                <div className="goal-table-container">
+                  <table>
+                    <tr>
+                      <th>Goal</th>
+                      <th>Deadline</th>
+                      <th>Start Date</th>
+                      <th>Complete Date</th>
+                      <th>Status</th>
+                      <th>Delete</th>
+                    </tr>
+                    {skill.goals.map((goal) => {
+                      return (
+                        <>
+                          {goal.complete ? (
+                            <tr key={goal.id}>
+                              <td>
+                                <s>{goal.goal}</s>
+                              </td>
+                              <td>{goal.deadLine}</td>
+                              <td>{goal.startDate}</td>
+                              <td>{goal.endDate}</td>
+                              <td>
+                                <button
+                                  id={goal.id}
+                                  onClick={(e) => {
+                                    handleGoalChange(e);
+                                  }}
+                                >
+                                  UNCOMPLETE
+                                </button>
+                              </td>
+                              <td>
+                                <button
+                                  id={goal.id}
+                                  onClick={(e) => {
+                                    handleDeleteGoal(e);
+                                  }}
+                                >
+                                  Delete
+                                </button>
+                              </td>
+                            </tr>
+                          ) : (
+                            <tr key={goal.id}>
+                              <td>{goal.goal}</td>
+                              <td>{goal.deadLine}</td>
+                              <td>{goal.startDate}</td>
+                              <td>{goal.endDate}</td>
+                              <td>
+                                <button
+                                  id={goal.id}
+                                  onClick={(e) => {
+                                    handleGoalChange(e);
+                                  }}
+                                >
+                                  COMPLETED!
+                                </button>
+                              </td>
+                              <td>
+                                <button
+                                  id={goal.id}
+                                  onClick={(e) => {
+                                    handleDeleteGoal(e);
+                                  }}
+                                >
+                                  Delete
+                                </button>
+                              </td>
+                            </tr>
+                          )}
+                        </>
+                      );
+                    })}
+                  </table>
+                </div>
                 <br />
                 <h5>Add new goal</h5>
                 <hr />
@@ -434,6 +437,11 @@ const SkillView = () => {
                 >
                   Add new goal
                 </button>
+                <ToolTip
+                  tooltip={
+                    "Set goals and tick them off the list when completed."
+                  }
+                />
               </div>
 
               <div className="compo">
@@ -506,6 +514,11 @@ const SkillView = () => {
                     })}
                   </table>
                 </div>
+                <ToolTip
+                  tooltip={
+                    "Add new experiences. View and edit past experiences."
+                  }
+                />
               </div>
             </div>
             <div className="main-right">
@@ -521,11 +534,21 @@ const SkillView = () => {
                     setExpSmaLength(e.target.value);
                   }}
                 />
+                <ToolTip
+                  tooltip={
+                    "Adjust the purple lines in the graphs below. (purple line is the average for the last specified days)"
+                  }
+                />
               </div>
               <div className="compo">
                 <h4>EXP plot</h4>
                 <hr />
                 <LinePlot data={expGraph} dataName={"exp"} smaName={"sma"} />
+                <ToolTip
+                  tooltip={
+                    "This is the plot of all the exp entries for this skill. Purple line is the moving average."
+                  }
+                />
               </div>
               <div className="compo">
                 <h4>Focus plot</h4>
@@ -535,6 +558,11 @@ const SkillView = () => {
                   dataName={"focus"}
                   smaName={"focusSma"}
                 />
+                <ToolTip
+                  tooltip={
+                    "This is the plot of all focus entries for this skill. The line shows how in some periods you can be more focused than others."
+                  }
+                />
               </div>
               <div className="compo">
                 <h4>Total EXP plot</h4>
@@ -543,6 +571,11 @@ const SkillView = () => {
                   data={totalExpGraph}
                   dataName={"exp"}
                   smaName={"sma"}
+                />
+                <ToolTip
+                  tooltip={
+                    "This is the total amount of EXP that you have gained."
+                  }
                 />
               </div>
             </div>

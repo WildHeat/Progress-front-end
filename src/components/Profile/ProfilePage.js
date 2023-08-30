@@ -7,8 +7,6 @@ function ProfilePage() {
   const [user, setUser] = useState("");
   const [jwt, setJwt] = useLocalState("jwt", "");
 
-  // const [update, setUpdate] = useState(false);
-
   useEffect(() => {
     if (jwt) {
       const fetchData = async () => {
@@ -31,7 +29,6 @@ function ProfilePage() {
             })
             .catch((message) => {
               setJwt(null);
-              console.log(message);
               alert(message);
             });
         } catch (error) {

@@ -237,9 +237,6 @@ header {
   overflow: visible;
 }
 
-.progress-inner-container:hover {
-  width: 2%;
-}
 .progress-inner-container p {
   margin-bottom: 0;
   padding: 0;
@@ -248,33 +245,9 @@ header {
 
 table {
   width: 100%;
+  overflow-x: auto;
 }
 
 tr:nth-child(even) {
   background-color: #dddddd;
-}
-
-.progress-bar-sword {
-  margin: 10px;
-  background-color: #e7e5df;
-  width: 100%;
-  height: 5vh;
-  position: relative;
-}
-
-.progress-bar-sword-inner {
-  width: 100%;
-  height: inherit;
-  background-color: blue;
-}
-
-.progress-bar-sword:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  border-top: 2em solid white;
-  border-left: 5em solid blue;
-  width: 30%;
-  height: inherit;
 }

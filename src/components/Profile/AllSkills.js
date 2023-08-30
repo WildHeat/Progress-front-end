@@ -7,7 +7,6 @@ const AllSkills = (props) => {
 
   function handleNewSkillSubmit() {
     if (props.user) {
-      console.log("User skills");
       let newSkill = {
         name: newSkillName,
         exp: 0,
