@@ -93,7 +93,6 @@ const SkillView = () => {
         for (let j = i - expSmaLength; j <= i; j++) {
           if (j >= 0) {
             count++;
-            // console.log(tempExp[j].focus);
             sumFocus += tempExp[j].focus;
             sum += tempExp[j].exp;
           }
