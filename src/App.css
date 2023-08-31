@@ -251,3 +251,20 @@ table {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+
+.register-page-container,
+.login-page-conatiner {
+  background-color: #44bba4;
+  display: flex;
+  justify-content: center;
+  height: 70vh;
+  align-items: center;
+  text-align: center;
+}
+
+.register-container,
+.login-container {
+  color: white;
+  width: max(30%, 20rem);
+  border: solid #44bba4;
+}

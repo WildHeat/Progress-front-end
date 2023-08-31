@@ -39,31 +39,36 @@ const Login = () => {
   }
 
   return (
-    <>
-      <div>
-        <label htmlFor="username">Username:</label>
-        <input
-          type="text"
-          id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
+    <div className="login-page-conatiner">
+      <div className="login-container">
+        <h4>Login</h4>
+        <div>
+          <input
+            type="text"
+            className="form-control"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Enter Username..."
+          />
+        </div>
+        <div>
+          <input
+            type="password"
+            className="form-control"
+            id="password"
+            placeholder="Enter Password..."
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <div>
+          <button type="submit" onClick={() => handleSubmit()}>
+            Login
+          </button>
+        </div>
       </div>
-      <div>
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <div>
-        <button type="submit" onClick={() => handleSubmit()}>
-          Login
-        </button>
-      </div>
-    </>
+    </div>
   );
 };
 

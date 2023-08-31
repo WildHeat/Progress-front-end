@@ -11,7 +11,8 @@ progress {
   height: 20px;
 }
 
-button {
+button,
+input[type="submit"] {
   background-color: #007bff;
   color: white;
   border: none;
@@ -30,13 +31,11 @@ input {
   margin: 5px 0;
 }
 
-/* Styling for Exp Entries section and Goals section */
 #addExpSection,
 #addGoalSection {
   margin-top: 20px;
 }
 
-/* Styling for LinePlot component */
 .LinePlot {
   width: 100%;
   height: 300px;

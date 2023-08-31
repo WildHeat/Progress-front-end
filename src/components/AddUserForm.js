@@ -47,34 +47,37 @@ function AddUserForm() {
   }
 
   return (
-    <div>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <input
-          onChange={(e) => handleChange(e)}
-          value={data.username || ""}
-          type="text"
-          className="form-control"
-          id="username"
-          placeholder="Enter Username..."
-        />
-        <input
-          onChange={(e) => handleChange(e)}
-          value={data.password || ""}
-          type="password"
-          className="form-control"
-          id="password"
-          placeholder="Enter Password..."
-        />
-        <input
-          onChange={(e) => handleChange(e)}
-          value={data.skill || ""}
-          type="text"
-          className="form-control"
-          id="skill"
-          placeholder="Enter First Skill..."
-        />
-        <input type="submit" value="Start Your Journey" />
-      </form>
+    <div className="register-page-container">
+      <div className="register-container">
+        <h4>Register</h4>
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <input
+            onChange={(e) => handleChange(e)}
+            value={data.username}
+            type="text"
+            className="form-control"
+            id="username"
+            placeholder="Enter Username..."
+          />
+          <input
+            onChange={(e) => handleChange(e)}
+            value={data.password}
+            type="password"
+            className="form-control"
+            id="password"
+            placeholder="Enter Password..."
+          />
+          <input
+            onChange={(e) => handleChange(e)}
+            value={data.skill || ""}
+            type="text"
+            className="form-control"
+            id="skill"
+            placeholder="Enter First Skill..."
+          />
+          <input type="submit" value="Start Your Journey" />
+        </form>
+      </div>
     </div>
   );
 }
