@@ -4,6 +4,7 @@ import { getTodaysDate } from "../util/getTodaysDate";
 
 function AddUserForm() {
   // const url = "/api/v1/users";
+  const [errorMessage, setErrorMessage] = useState([]);
   const [data, setData] = useState({
     username: "",
     password: "",
@@ -12,6 +13,33 @@ function AddUserForm() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    setErrorMessage([]);
+    let errors = [];
+
+    if (data.password.length < 8) {
+      errors.push("Password needs to be 8 characters or longer");
+    }
+
+    if (!/\d/.test(data.password)) {
+      errors.push("Password needs to contain at least 1 number");
+    }
+
+    if (!/[A-Z]/.test(data.password)) {
+      errors.push("Password needs contain at least 1 uppercase letter");
+    }
+
+    if (!/[a-z]/.test(data.password)) {
+      errors.push("Password needs contain at least 1 lowercase letter");
+    }
+
+    if (!/[a-zA-Z]/.test(data.username)) {
+      errors.push("Username must contain at least one letter");
+    }
+
+    setErrorMessage(errors);
+
+    if (errors.length > 0) return;
+
     window.location.replace("/login");
     fetch("/api/v1/users", {
       headers: {
@@ -77,6 +105,14 @@ function AddUserForm() {
           />
           <input type="submit" value="Start Your Journey" />
         </form>
+        {errorMessage.map((error) => {
+          return (
+            <div key={error}>
+              - {error}
+              <br />
+            </div>
+          );
+        })}
       </div>
     </div>
   );
