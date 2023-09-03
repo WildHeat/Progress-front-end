@@ -40,7 +40,6 @@ function AddUserForm() {
 
     if (errors.length > 0) return;
 
-    window.location.replace("/login");
     fetch("/api/v1/users", {
       headers: {
         "Content-type": "application/json",
@@ -52,6 +51,12 @@ function AddUserForm() {
         userJoinDate: getTodaysDate(),
         skills: [{ name: data.skill }],
       }),
+    }).then((response) => {
+      if (response.status === 201) {
+        window.location.replace("/login");
+      } else if (response.status === 409) {
+        setErrorMessage(["Username is already taken. Choose a different name"]);
+      }
     });
   }
 
@@ -64,14 +69,6 @@ function AddUserForm() {
     };
     newData[e.target.id] = e.target.value;
     setData(newData);
-    console.log(
-      JSON.stringify({
-        username: data.username,
-        password: data.password,
-        userJoinDate: getTodaysDate(),
-        skills: [{ name: data.skill }],
-      })
-    );
   }
 
   return (

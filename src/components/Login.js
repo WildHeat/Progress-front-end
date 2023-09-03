@@ -5,9 +5,13 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [jwt, setJwt] = useLocalState("jwt", "");
+  const [errorMessage, setErrorMessage] = useState("");
 
   function handleSubmit() {
-    console.log("Logging in as", username, password);
+    if (username === "" || password === "") {
+      setErrorMessage("Please enter your details");
+      return;
+    }
     if (!jwt) {
       const reqBody = {
         username: username,
@@ -23,17 +27,19 @@ const Login = () => {
         .then((response) => {
           if (response.status === 200)
             return Promise.all([response.json(), response.headers]);
-          else return Promise.reject("Invalid login attempt");
+          else if (response.status === 401)
+            return Promise.reject("Invalid login attempt");
+          else
+            return Promise.reject(
+              "Something went wrong! Please try again later"
+            );
         })
         .then(([body, headers]) => {
-          console.log(body);
-          console.log(headers.get("authorization"));
           setJwt(headers.get("authorization"));
-          window.location.replace("/");
+          window.location.replace("/profile");
         })
         .catch((message) => {
-          console.log(message);
-          alert(message);
+          setErrorMessage(message);
         });
     }
   }
@@ -62,6 +68,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
+        <p className="error-message">{errorMessage}</p>
         <div>
           <button type="submit" onClick={() => handleSubmit()}>
             Login

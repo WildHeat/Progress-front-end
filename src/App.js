@@ -10,6 +10,7 @@ import Header from "./components/Header";
 import IndexPage from "./components/index/IndexPage";
 import SkillView from "./components/SkillView/SkillView";
 import ProfilePage from "./components/Profile/ProfilePage";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           <Route path="/register" element={<AddUserForm />} />
           <Route path="/*" element={<PageNotFound />} />
         </Routes>
+        <Footer />
       </div>
     </Router>
   );

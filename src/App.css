@@ -268,3 +268,53 @@ tr:nth-child(even) {
   width: max(30%, 20rem);
   border: solid #44bba4;
 }
+
+.error-message {
+  color: rgb(0, 0, 0);
+  font-size: large;
+  font-weight: 700;
+}
+
+.footer-container {
+  padding: 3em;
+  width: 100%;
+  color: white;
+  background-color: rgb(50, 50, 50);
+}
+
+.link-container {
+  /* padding: 2em; */
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* gap: 7em; */
+}
+
+.link-inner-container .nav-link {
+  text-align: center;
+}
+
+.link-inner-container {
+  margin-inline: 3rem;
+  min-width: 6em;
+  padding: 1em;
+  border-inline: solid rgba(139, 139, 139, 0.342);
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.made-in-care-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.made-in-care-container span {
+  color: #e7bb41;
+}
+
+.made-in-care-container p {
+  text-align: center;
+  max-width: 14ch;
+}
