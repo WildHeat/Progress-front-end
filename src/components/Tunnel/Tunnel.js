@@ -27,12 +27,6 @@ const Tunnel = () => {
       console.log("X:" + centerX);
       console.log("y:" + centerY);
     }
-    // const divRect = event.target.getBoundingClientRect();
-    // const centerX = divRect.width / 2;
-    // const centerY = divRect.height / 2;
-    // const offsetX = clientX - divRect.left - centerX - 125;
-    // const offsetY = clientY - divRect.top - centerY - 125;
-    // setMousePosition({ x: offsetX, y: offsetY });
   };
 
   useEffect(() => {
