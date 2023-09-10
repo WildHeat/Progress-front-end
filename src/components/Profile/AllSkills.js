@@ -5,7 +5,7 @@ import { getTodaysDate } from "../../util/getTodaysDate";
 const AllSkills = (props) => {
   const [newSkillName, setNewSkillName] = useState("");
 
-  function handleNewSkillSubmit() {
+  async function handleNewSkillSubmit() {
     if (props.user) {
       let newSkill = {
         name: newSkillName,
@@ -15,7 +15,7 @@ const AllSkills = (props) => {
       let tempUser = props.user;
       delete tempUser.authorities;
 
-      fetch("/api/v1/skills", {
+      await fetch("/api/v1/skills", {
         headers: {
           "Content-type": "application/json",
         },
@@ -38,25 +38,23 @@ const AllSkills = (props) => {
           fetch("/api/v1/users", {
             headers: {
               "Content-type": "application/json",
+              authorization:
+                "Bearer " + JSON.parse(localStorage.getItem("jwt")),
             },
             body: JSON.stringify(tempUser),
             method: "put",
-          })
-            .then((response) => {
-              if (response.status === 201)
-                return Promise.all([response.json(), response.headers]);
-              else
-                return Promise.reject("Failed to update. Somthing went wrong.");
-            })
-            .then(([body]) => {
-              window.location.replace("/");
-            });
-          window.location.replace("/");
+          }).then((response) => {
+            if (response.status === 201)
+              return Promise.all([response.json(), response.headers]);
+            else
+              return Promise.reject("Failed to update. Somthing went wrong.");
+          });
+          window.location.href = "/profile";
         });
     }
   }
 
-  function handleDeleteSkill(e) {
+  async function handleDeleteSkill(e) {
     //first need to update the user to remove the skill then you can delete it.
     var tempUser = props.user;
     tempUser.skills = tempUser.skills.filter((skill) => {
@@ -65,21 +63,21 @@ const AllSkills = (props) => {
 
     delete tempUser.authorities;
 
-    fetch("/api/v1/users", {
+    await fetch("/api/v1/users", {
       headers: {
         "Content-type": "application/json",
+        authorization: "Bearer " + JSON.parse(localStorage.getItem("jwt")),
       },
       body: JSON.stringify(tempUser),
       method: "put",
     }).then((response) => {
-      console.log("Response Status =", response.status);
+      if (response.status) {
+        fetch("/api/v1/skills/" + e.target.name, {
+          method: "delete",
+        });
+        window.location.href = "/profile";
+      }
     });
-    setTimeout(() => {
-      fetch("/api/v1/skills/" + e.target.name, {
-        method: "delete",
-      });
-      window.location.replace("/");
-    }, 1000);
   }
 
   function displaySkills() {
@@ -111,7 +109,7 @@ const AllSkills = (props) => {
   }
 
   return (
-    <>
+    <div className="all-skills-container">
       <h2 className="skills-title">Skills</h2>
       <div className="all-skills-container">{displaySkills()}</div>
       <div className="add-skill-container">
@@ -135,24 +133,8 @@ const AllSkills = (props) => {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 };
-
-// <div className='container'>
-
-//     <div className="row">
-//         <div className="col"><Skill skill={user.user.skills[0].name} exp={user.user.skills[0].exp} /> </div>
-//         <div className="col"><Skill skill="React" exp="20" /> </div>
-//     </div>
-//     <div className="row">
-//         <div className="col"><Skill skill="Java" exp="20" /> </div>
-//         <div className="col"><Skill skill="SQL" exp="20" /> </div>
-//     </div>
-//     <div className="row">
-//         <div className="col"><Skill skill="Spring" exp="20" /> </div>
-//         <div className="col"><AddSkillButtton/> </div>
-//     </div>
-// </div>
 
 export default AllSkills;

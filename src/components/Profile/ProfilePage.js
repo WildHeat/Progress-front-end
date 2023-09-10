@@ -29,6 +29,7 @@ function ProfilePage() {
             })
             .catch((message) => {
               setJwt(null);
+              window.location.href = "/login";
               alert(message);
             });
         } catch (error) {

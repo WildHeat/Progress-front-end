@@ -119,8 +119,9 @@ header {
   min-width: min(33vw, 30em);
   box-sizing: border-box;
   padding: 2em;
-  border: 2px solid teal;
+  border: 2px solid rgb(235, 235, 235);
   border-radius: 25px;
+  background-color: white;
   /* flex: 50%; */
 }
 
@@ -129,6 +130,11 @@ header {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.all-skills-container {
+  width: 100%;
+  background-color: #ececec;
 }
 
 .all-skills-container {

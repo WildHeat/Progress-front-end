@@ -1,21 +1,38 @@
 .about-page-container {
   text-align: center;
 }
-.about-page-container p {
+.about-page-container p,
+.nav-link {
   font-size: 1.5em;
 }
 
-.page-title {
-  color: #44bba4;
+.linkedin {
+  color: #0a66c2;
+}
+
+.github {
+  color: black;
+}
+
+.page-title,
+.title {
+  color: white;
+  padding-block: 0.5em;
+  font-size: 3em;
+}
+
+.nerd-title {
+  color: black;
 }
 
 .about-me-container {
   background-color: #393e41;
   color: white;
+  padding-bottom: 2em;
 }
 
 .section {
-  padding-inline: 15%;
+  padding-inline: min(7%, 6em);
 }
 
 .about-me {
@@ -25,10 +42,8 @@
 }
 
 .about-me-image {
-  background-color: blueviolet;
-  width: max(50%, 20em);
-  height: 40vh;
-  border-radius: 10%;
+  width: 100%;
+  border-radius: 100%;
 }
 .about-me-links {
   display: flex;
@@ -52,5 +67,66 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 5em;
+  gap: 1em 5em;
+}
+
+.motivation-container {
+  background-color: #44bba4;
+  color: white;
+}
+
+.level-up-image-container {
+  width: max(45%, 19em);
+}
+
+.level-up-image {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.top-motivation-section {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 1em 5em;
+}
+
+.motivation-section,
+.story-right-container {
+  width: max(45%, 19em);
+  padding: 2em 1em;
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bottom-motivation-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 1em 5em;
+  padding-block: 2em;
+}
+
+h4 {
+  color: #44bba4;
+}
+
+.tech-container {
+  flex: 1;
+}
+
+.tech-used-title {
+  color: black;
+  padding-bottom: 1em;
+}
+
+.thank-you-container {
+  padding: 2em;
+  color: white;
+  background-color: #44bba4;
 }

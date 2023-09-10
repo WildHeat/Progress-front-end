@@ -15,6 +15,7 @@ import Footer from "./components/Footer";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import About from "./components/About/About";
+import ScrollToTop from "./components/ScrollToTop";
 
 library.add(faBars, faTimes);
 
@@ -50,6 +51,7 @@ function App() {
           <Route path="/*" element={<PageNotFound />} />
         </Routes>
         <Footer />
+        <ScrollToTop />
       </div>
     </Router>
   );
