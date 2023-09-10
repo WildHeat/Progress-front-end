@@ -39,14 +39,11 @@ const ImageSlider = ({ slides }) => {
   };
   return (
     <div className="image-slidshow-container">
-      <div className="left-arrow arrow" onClick={previousSlide}>
-        ⇽
-      </div>
-      <div className="right-arrow arrow" onClick={nextSlide}>
-        ⇾
-      </div>
       <div style={slideStyle} className="slide"></div>
       <div className="dots-container">
+        <div className="left-arrow arrow" onClick={previousSlide}>
+          ⇽
+        </div>
         {slides.map((slide, index) => {
           return (
             <div
@@ -58,6 +55,9 @@ const ImageSlider = ({ slides }) => {
             </div>
           );
         })}
+        <div className="right-arrow arrow" onClick={nextSlide}>
+          ⇾
+        </div>
       </div>
     </div>
   );

@@ -12,6 +12,12 @@ import SkillView from "./components/SkillView/SkillView";
 import ProfilePage from "./components/Profile/ProfilePage";
 import Footer from "./components/Footer";
 
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+import About from "./components/About/About";
+
+library.add(faBars, faTimes);
+
 function App() {
   return (
     <Router>
@@ -40,6 +46,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/register" element={<AddUserForm />} />
+          <Route path="/about" element={<About />} />
           <Route path="/*" element={<PageNotFound />} />
         </Routes>
         <Footer />

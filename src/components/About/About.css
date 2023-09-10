@@ -1,0 +1,56 @@
+.about-page-container {
+  text-align: center;
+}
+.about-page-container p {
+  font-size: 1.5em;
+}
+
+.page-title {
+  color: #44bba4;
+}
+
+.about-me-container {
+  background-color: #393e41;
+  color: white;
+}
+
+.section {
+  padding-inline: 15%;
+}
+
+.about-me {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.about-me-image {
+  background-color: blueviolet;
+  width: max(50%, 20em);
+  height: 40vh;
+  border-radius: 10%;
+}
+.about-me-links {
+  display: flex;
+  justify-content: center;
+  gap: 3em;
+  width: 100%;
+}
+
+.about-me-description p {
+  text-wrap: balance;
+}
+
+.about-me-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: max(50%, 20em);
+}
+
+.nerd-technology-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5em;
+}

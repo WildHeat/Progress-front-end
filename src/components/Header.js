@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Header() {
   const [showNav, setShowNav] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [jwt, setJwt] = useState(null);
+  var tempJwt = localStorage.getItem("jwt");
+
+  useEffect(() => {
+    setJwt(JSON.parse(localStorage.getItem("jwt")));
+  }, [tempJwt]);
 
   useEffect(() => {
     const updateDimension = () => {
@@ -21,7 +28,7 @@ function Header() {
   }, [windowWidth]);
 
   const isLoggedInNavBar = () => {
-    if (localStorage.getItem("jwt") === "null") {
+    if (jwt === null) {
       return (
         <>
           <li className="nav-item">
@@ -58,16 +65,14 @@ function Header() {
       <Link className="logo" to="/">
         <h3 className="logo">AB Tracker</h3>
       </Link>
-      <button
+
+      <FontAwesomeIcon
+        icon={showNav ? "times" : "bars"}
         className="mobile-nav-toggle"
-        aria-controls="primary-navigation"
-        aria-expanded="false"
         onClick={() => {
           setShowNav(!showNav);
         }}
-      >
-        <span className="sr-only">Menu</span>
-      </button>
+      />
 
       <nav>
         <ul

@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 // import { currentLevel, getCurrentBar } from ".../util/expToLevel";
 import LinePlot from "../LinePlot";
 import "./SkillView.css"; // Import the CSS file
-import { useLocalState } from "../../util/useLocalStorage";
 import { getTodaysDate } from "../../util/getTodaysDate";
 import { currentLevel, getCurrentBar } from "../../util/expToLevel";
 import ProgressBar from "../ProgressBar";
@@ -14,7 +13,7 @@ const SkillView = () => {
   const [showEditName, setShowEditName] = useState(false);
   const [editName, setEditName] = useState("");
   const skillId = window.location.href.split("/skills/")[1];
-  const [jwt, setJwt] = useLocalState("jwt", "");
+  const jwt = JSON.parse(localStorage.getItem("jwt"));
   const [addExpDate, setAddExpDate] = useState(getTodaysDate());
   const [refresh, setRefresh] = useState(getTodaysDate());
   const [addExpLength, setAddExpLength] = useState(0);
@@ -239,7 +238,14 @@ const SkillView = () => {
 
   async function handleGoalChange(e) {
     var tempGoal = skill.goals.find((goal) => "" + goal.id === e.target.id);
-    tempGoal.complete = !tempGoal.complete;
+
+    if (tempGoal.complete) {
+      tempGoal.complete = false;
+      tempGoal.endDate = undefined;
+    } else {
+      tempGoal.complete = true;
+      tempGoal.endDate = getTodaysDate();
+    }
 
     await fetch("/api/v1/goals", {
       headers: {
@@ -332,9 +338,9 @@ const SkillView = () => {
                     </tr>
                     {skill.goals.map((goal) => {
                       return (
-                        <>
+                        <tr key={goal.id}>
                           {goal.complete ? (
-                            <tr key={goal.id}>
+                            <>
                               <td>
                                 <s>{goal.goal}</s>
                               </td>
@@ -361,9 +367,9 @@ const SkillView = () => {
                                   Delete
                                 </button>
                               </td>
-                            </tr>
+                            </>
                           ) : (
-                            <tr key={goal.id}>
+                            <>
                               <td>{goal.goal}</td>
                               <td>{goal.deadLine}</td>
                               <td>{goal.startDate}</td>
@@ -388,9 +394,9 @@ const SkillView = () => {
                                   Delete
                                 </button>
                               </td>
-                            </tr>
+                            </>
                           )}
-                        </>
+                        </tr>
                       );
                     })}
                   </table>
@@ -498,9 +504,9 @@ const SkillView = () => {
                       <th>EXP</th>
                       <th>Delete</th>
                     </tr>
-                    {skill.expEntries.map((entry) => {
+                    {skill.expEntries.map((entry, id) => {
                       return (
-                        <tr id={entry.id}>
+                        <tr key={id}>
                           <td>{entry.timeEntry}</td>
                           <td>{entry.exp}</td>
                           <td>
@@ -579,7 +585,6 @@ const SkillView = () => {
               </div>
             </div>
           </div>
-          <footer className="compo">Footer information.</footer>
         </>
       ) : (
         <>No skill found</>

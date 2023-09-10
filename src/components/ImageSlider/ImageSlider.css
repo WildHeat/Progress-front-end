@@ -1,20 +1,17 @@
 .arrow {
-  position: absolute;
-  top: 50%;
-  font-size: 50px;
-  text-shadow: 10px;
-  color: white;
+  font-size: 30px;
+  transform: translateY(-12px);
+  color: black;
   z-index: 999;
   cursor: pointer;
-  transform: translate(0, -50%);
 }
 
-.left-arrow {
+/* .left-arrow {
   left: 32px;
 }
 .right-arrow {
   right: 32px;
-}
+} */
 
 .image-slidshow-container {
   width: 80%;

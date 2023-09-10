@@ -30,7 +30,7 @@ const Skill = ({ skill, exp, skillId, goals }) => {
         <ProgressBar current={currentBar} max={max} />
       </div>
       <div className="skill-box-goal">
-        {goalToDisplay !== "" ? "Uncomplete Goal:" + goalToDisplay : ""}
+        {goalToDisplay !== "" ? "Uncomplete Goal: " + goalToDisplay : ""}
       </div>
     </div>
   );
