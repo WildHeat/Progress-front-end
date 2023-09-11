@@ -114,7 +114,7 @@ const AllSkills = (props) => {
       <div className="all-skills-container">{displaySkills()}</div>
       <div className="add-skill-container">
         <label>
-          New skill name
+          New skill name{" "}
           <input
             name="skillName"
             type="text"

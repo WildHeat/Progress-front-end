@@ -6,16 +6,16 @@ import InfoDeck from "./InfoDeck";
 function IndexPage() {
   const slides = [
     {
-      title: "target hit",
-      url: "https://www.incimages.com/uploaded_files/image/1920x1080/shutterstock_318915104_360067.jpg",
+      title: "Create your unique character and start your journey today",
+      url: require("../../img/slide1.jpg"),
     },
     {
-      title: "stats",
-      url: "https://poetsandquants.com/wp-content/uploads/sites/5/2018/05/benefits-of-a-business-analytics-course-and-degree-img.jpg",
+      title: "You decide what skills your character should have",
+      url: require("../../img/slide2.jpg"),
     },
     {
-      title: "profile",
-      url: "https://img.freepik.com/free-vector/hand-drawn-profile-icon-collection_52683-71949.jpg?w=2000",
+      title: "In-depth dashboard to give you a deeper insight in your skills",
+      url: require("../../img/slide3.jpg"),
     },
   ];
 

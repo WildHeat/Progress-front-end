@@ -33,12 +33,14 @@ const ImageSlider = ({ slides }) => {
     backgroundImage: `url(${slides[currentIndex].url})`,
     width: "100%",
     height: "100%",
+    border: "solid 0.5px black",
     borderRadius: "10px",
     backgroundSize: "cover",
     backgroundPosition: "center",
   };
   return (
     <div className="image-slidshow-container">
+      <h3>{slides[currentIndex].title}</h3>
       <div style={slideStyle} className="slide"></div>
       <div className="dots-container">
         <div className="left-arrow arrow" onClick={previousSlide}>

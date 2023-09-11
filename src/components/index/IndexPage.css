@@ -43,7 +43,6 @@
 
 .index-meditate {
   max-width: 100%;
-  /* height: 100%; */
 }
 
 .show-container {
@@ -55,7 +54,7 @@
 }
 
 .info-deck {
-  padding: 1em 10% 3em 10%;
+  padding: 6em 10% 3em 10%;
   display: flex;
   justify-content: space-between;
   gap: 2em;
