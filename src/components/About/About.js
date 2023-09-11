@@ -92,7 +92,7 @@ const About = () => {
       </div>
       <div className="nerd-stuff-container section">
         <h2 className="nerd-title title">Nerd Stuff</h2>
-        <h4 className="tech-used-title">Technologies Used</h4>
+        <h4 className="tech-used-title">Technologies Used In This Project</h4>
         <div className="nerd-technology-container">
           <div className="tech-container">
             <h4>Frontend</h4>

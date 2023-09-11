@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import "./IndexPage.css";
 import ImageSlider from "../ImageSlider/ImageSlider";
 import InfoDeck from "./InfoDeck";
-import Tunnel from "../Tunnel/Tunnel";
 
 function IndexPage() {
   const slides = [
@@ -67,52 +66,12 @@ function IndexPage() {
       <InfoDeck />
       <div className="begin-your-journey-container">
         <h3 className="begin-your-journey">
-          SO...ARE YOU READY TO START YOUR JOURNEY? HIT THE CENTER OF THE TARGET
-          TO REGISTER!
+          SO...ARE YOU READY TO START YOUR JOURNEY? REGISTER AND BEGIN!
         </h3>
         <a href="/register">
           <button className="register-button">Register</button>
         </a>
       </div>
-      <div className="">
-        <Tunnel />
-        <div className="tunnel-card-deck">
-          <div className="tunnel-card">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Feugiat in fermentum posuere urna nec. Enim nec dui nunc mattis
-              enim ut tellus elementum sagittis.
-            </p>
-          </div>
-          <div className="tunnel-card">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Feugiat in fermentum posuere urna nec. Enim nec dui nunc mattis
-              enim ut tellus elementum sagittis.
-            </p>
-          </div>
-          <div className="tunnel-card">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Feugiat in fermentum posuere urna nec. Enim nec dui nunc mattis
-              enim ut tellus elementum sagittis.
-            </p>
-          </div>
-          <div className="tunnel-card">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Feugiat in fermentum posuere urna nec. Enim nec dui nunc mattis
-              enim ut tellus elementum sagittis.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* <InfoDeck /> */}
     </div>
   );
 }

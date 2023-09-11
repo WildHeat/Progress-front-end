@@ -91,40 +91,6 @@
   color: white;
 }
 
-.tunnel-card-deck {
-  max-width: 100vw;
-  max-height: 100vh;
-  overflow: hidden;
-  padding: 10%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4em;
-  justify-content: space-between;
-}
-
-.tunnel-card {
-  font-size: 20px;
-  border: solid blue;
-  background-color: rgba(115, 115, 115, 0.5);
-  width: 30vw;
-  min-width: min(400px, 80vw);
-  height: 30vh;
-  transition: all 1s ease 0s;
-  filter: blur(0.4em);
-}
-
-.tunnel-card:hover,
-.tunnel-card:focus {
-  background-color: rgba(115, 115, 115, 0.9);
-  filter: blur(0);
-}
-
-@media (max-width: 68.5em) {
-  .tunnel-card-deck {
-    overflow: scroll;
-  }
-}
-
 .hidden {
   opacity: 0;
   transition: all 1s;
@@ -142,4 +108,22 @@
   * {
     transition: none;
   }
+}
+
+.card-image-container {
+  width: 100%;
+  max-width: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-image-container img {
+  width: 100%;
+}
+
+.card-image-center-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
