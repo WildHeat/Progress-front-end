@@ -136,6 +136,7 @@ const SkillView = () => {
     await fetch("/api/v1/skills", {
       headers: {
         "Content-type": "application/json",
+        authorization: "Bearer " + jwt,
       },
       method: "PUT",
       body: JSON.stringify(tempSkill),
@@ -176,6 +177,7 @@ const SkillView = () => {
           await fetch("/api/v1/skills", {
             headers: {
               "Content-type": "application/json",
+              authorization: "Bearer " + jwt,
             },
             method: "PUT",
             body: JSON.stringify(skill),
@@ -208,6 +210,7 @@ const SkillView = () => {
         await fetch("/api/v1/skills", {
           headers: {
             "Content-type": "application/json",
+            authorization: "Bearer " + jwt,
           },
           method: "PUT",
           body: JSON.stringify(skill),
@@ -225,6 +228,7 @@ const SkillView = () => {
     await fetch("/api/v1/skills", {
       headers: {
         "Content-type": "application/json",
+        authorization: "Bearer " + jwt,
       },
       method: "PUT",
       body: JSON.stringify(tempSkill),
@@ -250,6 +254,7 @@ const SkillView = () => {
     await fetch("/api/v1/goals", {
       headers: {
         "Content-type": "application/json",
+        authorization: "Bearer " + jwt,
       },
       method: "PUT",
       body: JSON.stringify(tempGoal),
