@@ -16,8 +16,8 @@ function ProfileSection(props) {
       var totalExp = 0;
       var totalTime = 0;
       user.skills.forEach((skill) => {
-        totalExp += skill.exp;
         skill.expEntries.forEach((entry) => {
+          totalExp += entry.exp;
           totalTime += entry.hours;
         });
       });

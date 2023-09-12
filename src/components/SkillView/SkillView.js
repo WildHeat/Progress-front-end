@@ -262,8 +262,8 @@ const SkillView = () => {
   var max = 0;
 
   if (skill) {
-    level = parseInt(currentLevel(skill.exp, 100, 1.2), 10);
-    var currentBarReturn = getCurrentBar(level, 100, 1.2, skill.exp);
+    level = parseInt(currentLevel(totalExp, 100, 1.2), 10);
+    var currentBarReturn = getCurrentBar(level, 100, 1.2, totalExp);
     var currentBar = currentBarReturn[0];
     max = currentBarReturn[1];
   }

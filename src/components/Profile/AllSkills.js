@@ -80,6 +80,15 @@ const AllSkills = (props) => {
     });
   }
 
+  function totalExpInSkill(skill) {
+    var totalExp = 0;
+    skill.expEntries.forEach((entry) => {
+      totalExp += entry.exp;
+    });
+
+    return totalExp;
+  }
+
   function displaySkills() {
     var listOfSkills = [];
     for (let i = 0; i < props.user.skills.length; i++) {
@@ -88,7 +97,7 @@ const AllSkills = (props) => {
           <Skill
             skill={props.user.skills[i].name}
             goals={props.user.skills[i].goals}
-            exp={props.user.skills[i].exp}
+            exp={totalExpInSkill(props.user.skills[i])}
             id={i}
             skillId={props.user.skills[i].id}
           />
