@@ -20,11 +20,11 @@ const About = () => {
             <div className="story-right-text">
               <h4>The Story</h4>
               <p>
-                At AB Tracker, we believe that life is an endless journey of
-                growth and self-improvement. Whether you're learning a new
-                skill, mastering a hobby, or simply striving to become the best
-                version of yourself, my app is here to support and empower you
-                every step of the way.
+                I believe that life is an endless journey of growth and
+                self-improvement. Whether you're learning a new skill, mastering
+                a hobby, or simply striving to become the best version of
+                yourself, my app is here to support and empower you every step
+                of the way.
               </p>
             </div>
           </div>

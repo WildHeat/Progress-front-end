@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { getTodaysDate } from "../util/getTodaysDate";
-// import Axios from 'axios'
+import { getTodaysDate } from "../../util/getTodaysDate";
 
-function AddUserForm() {
-  // const url = "/api/v1/users";
+function Register() {
   const [errorMessage, setErrorMessage] = useState([]);
   const [data, setData] = useState({
     username: "",
     password: "",
     skill: "",
   });
+  const BASEURL = "http://13.40.86.103:8080";
+  // const BASEURL = "http://localhost:8080";
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -40,7 +40,7 @@ function AddUserForm() {
 
     if (errors.length > 0) return;
 
-    fetch("/api/v1/users", {
+    fetch(BASEURL + "/api/v1/users", {
       headers: {
         "Content-type": "application/json",
       },
@@ -74,7 +74,7 @@ function AddUserForm() {
   return (
     <div className="register-page-container">
       <div className="register-container">
-        <h4>Register</h4>
+        <h4 className="small-page-title">Register</h4>
         <form onSubmit={(e) => handleSubmit(e)}>
           <input
             onChange={(e) => handleChange(e)}
@@ -115,4 +115,4 @@ function AddUserForm() {
   );
 }
 
-export default AddUserForm;
+export default Register;

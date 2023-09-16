@@ -267,7 +267,8 @@ tr:nth-child(even) {
 }
 
 .register-page-container,
-.login-page-conatiner {
+.login-page-container,
+.logout-page-container {
   background-color: #44bba4;
   display: flex;
   justify-content: center;
@@ -277,10 +278,15 @@ tr:nth-child(even) {
 }
 
 .register-container,
-.login-container {
+.login-container,
+.logout-container {
   color: white;
   width: max(30%, 20rem);
   border: solid #44bba4;
+}
+
+.small-page-title {
+  color: white;
 }
 
 .error-message {

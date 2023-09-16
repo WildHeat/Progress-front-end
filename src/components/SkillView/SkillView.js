@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 // import { getTodaysDate } from ".../util/getTodaysDate";
 // import { currentLevel, getCurrentBar } from ".../util/expToLevel";
-import LinePlot from "../LinePlot";
+import LinePlot from "./LinePlot";
 import "./SkillView.css"; // Import the CSS file
 import { getTodaysDate } from "../../util/getTodaysDate";
 import { currentLevel, getCurrentBar } from "../../util/expToLevel";
@@ -33,11 +33,14 @@ const SkillView = () => {
 
   const [expGraph, setExpGraph] = useState();
 
+  const BASEURL = "http://13.40.86.103:8080";
+  // const BASEURL = "http://localhost:8080";
+
   async function handleEditNameSubmit() {
     let newSkill = skill;
     newSkill.name = editName;
 
-    await fetch("/api/v1/skills", {
+    await fetch(BASEURL + "/api/v1/skills", {
       headers: {
         "Content-type": "application/json",
         authorization: "Bearer " + jwt,
@@ -54,33 +57,32 @@ const SkillView = () => {
 
   useEffect(() => {
     async function fetchData() {
-      if (refresh) {
-        await fetch(`/api/v1/skills/${skillId}`, {
-          headers: {
-            "Content-type": "application/json",
-            authorization: "Bearer " + jwt,
-          },
-          method: "GET",
+      await fetch(BASEURL + "/api/v1/skills/" + skillId, {
+        headers: {
+          "Content-type": "application/json",
+          authorization: "Bearer " + jwt,
+        },
+        method: "GET",
+      })
+        .then((response) => {
+          if (response.status === 200) {
+            return response.json();
+          }
         })
-          .then((response) => {
-            if (response.status === 200) {
-              return response.json();
-            }
-          })
-          .then((skillData) => {
-            setSkill(skillData);
-          });
-        setRefresh(false);
-      }
+        .then((skillData) => {
+          setSkill(skillData);
+        });
+      setRefresh(false);
     }
-    fetchData();
+    if (refresh) {
+      fetchData();
+    }
   }, [refresh, skillId, jwt]);
 
   useEffect(() => {
     let tempTotalGraph = [];
 
     if (skill && skill.expEntries.length > 0) {
-      // setExpGraph(skill.expEntries);
       let tempExp = skill.expEntries;
       let timeSum = 0;
       let focusSum = 0;
@@ -93,30 +95,38 @@ const SkillView = () => {
           if (j >= 0) {
             count++;
             sumFocus += tempExp[j].focus;
-            sum += tempExp[j].exp;
+            sum += calculateExp(tempExp[j].focus, tempExp[j].hours);
           }
         }
         let average = sum / count;
         let averageFocus = sumFocus / count;
         tempExp[i].sma = average;
         tempExp[i].focusSma = averageFocus;
+        tempExp[i].exp = calculateExp(tempExp[i].focus, tempExp[i].hours);
 
         //Calcualte total exp graph
         if (i === 0) {
           tempTotalGraph.push({
-            exp: skill.expEntries[i].exp,
+            exp: calculateExp(
+              skill.expEntries[i].focus,
+              skill.expEntries[i].hours
+            ),
             timeEntry: skill.expEntries[i].timeEntry,
           });
         } else {
           tempTotalGraph.push({
-            exp: tempTotalGraph[i - 1].exp + skill.expEntries[i].exp,
+            exp:
+              tempTotalGraph[i - 1].exp +
+              calculateExp(
+                skill.expEntries[i].focus,
+                skill.expEntries[i].hours
+              ),
             timeEntry: skill.expEntries[0].timeEntry,
           });
         }
         focusSum += tempExp[i].focus;
         timeSum += tempExp[i].hours;
       }
-      setRefresh(true);
       setExpGraph(tempExp);
       setTotalExpGraph(tempTotalGraph);
 
@@ -127,13 +137,17 @@ const SkillView = () => {
     }
   }, [skill, expSmaLength]);
 
+  const calculateExp = (focus, time) => {
+    return time * 50 * (focus / 2);
+  };
+
   async function handleDeleteEntry(id) {
     var tempSkill = skill;
     tempSkill.expEntries = tempSkill.expEntries.filter((expEntry) => {
       return expEntry.id !== Number(id);
     });
 
-    await fetch("/api/v1/skills", {
+    await fetch(BASEURL + "/api/v1/skills", {
       headers: {
         "Content-type": "application/json",
         authorization: "Bearer " + jwt,
@@ -142,7 +156,7 @@ const SkillView = () => {
       body: JSON.stringify(tempSkill),
     }).then(() => {
       setTimeout(() => {
-        fetch("/api/v1/expentries/" + id, {
+        fetch(BASEURL + "/api/v1/expentries/" + id, {
           method: "DELETE",
         });
         setRefresh(true);
@@ -155,7 +169,7 @@ const SkillView = () => {
       // the base exp per hour will be 100
       const addExpValue = addExpLength * 50 * (addExpFocus / 2);
 
-      await fetch("/api/v1/expentries", {
+      await fetch(BASEURL + "/api/v1/expentries", {
         headers: {
           "Content-type": "application/json",
         },
@@ -174,7 +188,7 @@ const SkillView = () => {
         })
         .then(async (expEntry) => {
           skill.expEntries.push(expEntry);
-          await fetch("/api/v1/skills", {
+          await fetch(BASEURL + "/api/v1/skills", {
             headers: {
               "Content-type": "application/json",
               authorization: "Bearer " + jwt,
@@ -188,7 +202,7 @@ const SkillView = () => {
   }
 
   async function handleAddGoal() {
-    await fetch("/api/v1/goals", {
+    await fetch(BASEURL + "/api/v1/goals", {
       headers: {
         "Content-type": "application/json",
       },
@@ -207,7 +221,7 @@ const SkillView = () => {
       })
       .then(async (goal) => {
         skill.goals.push(goal);
-        await fetch("/api/v1/skills", {
+        await fetch(BASEURL + "/api/v1/skills", {
           headers: {
             "Content-type": "application/json",
             authorization: "Bearer " + jwt,
@@ -225,7 +239,7 @@ const SkillView = () => {
       return goal.id !== Number(e.target.id);
     });
 
-    await fetch("/api/v1/skills", {
+    await fetch(BASEURL + "/api/v1/skills", {
       headers: {
         "Content-type": "application/json",
         authorization: "Bearer " + jwt,
@@ -233,7 +247,7 @@ const SkillView = () => {
       method: "PUT",
       body: JSON.stringify(tempSkill),
     }).then(async () => {
-      await fetch("/api/v1/goals/" + e.target.id, {
+      await fetch(BASEURL + "/api/v1/goals/" + e.target.id, {
         method: "DELETE",
       });
       setRefresh(true);
@@ -251,7 +265,7 @@ const SkillView = () => {
       tempGoal.endDate = getTodaysDate();
     }
 
-    await fetch("/api/v1/goals", {
+    await fetch(BASEURL + "/api/v1/goals", {
       headers: {
         "Content-type": "application/json",
         authorization: "Bearer " + jwt,
@@ -513,7 +527,7 @@ const SkillView = () => {
                       return (
                         <tr key={id}>
                           <td>{entry.timeEntry}</td>
-                          <td>{entry.exp}</td>
+                          <td>{entry.hours * 50 * (entry.focus / 2)}</td>
                           <td>
                             <button onClick={() => handleDeleteEntry(entry.id)}>
                               Delete

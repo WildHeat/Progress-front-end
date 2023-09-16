@@ -4,6 +4,7 @@ import { getTodaysDate } from "../../util/getTodaysDate";
 
 const AllSkills = (props) => {
   const [newSkillName, setNewSkillName] = useState("");
+  const BASEURL = "http://13.40.86.103:8080";
 
   async function handleNewSkillSubmit() {
     if (props.user) {
@@ -15,9 +16,10 @@ const AllSkills = (props) => {
       let tempUser = props.user;
       delete tempUser.authorities;
 
-      await fetch("/api/v1/skills", {
+      await fetch(BASEURL + "/api/v1/skills", {
         headers: {
           "Content-type": "application/json",
+          authorization: "Bearer " + JSON.parse(localStorage.getItem("jwt")),
         },
         body: JSON.stringify(newSkill),
         method: "post",
@@ -35,7 +37,7 @@ const AllSkills = (props) => {
           console.log(body);
           tempUser.skills.push(body);
 
-          fetch("/api/v1/users", {
+          fetch(BASEURL + "/api/v1/users", {
             headers: {
               "Content-type": "application/json",
               authorization:
@@ -63,7 +65,7 @@ const AllSkills = (props) => {
 
     delete tempUser.authorities;
 
-    await fetch("/api/v1/users", {
+    await fetch(BASEURL + "/api/v1/users", {
       headers: {
         "Content-type": "application/json",
         authorization: "Bearer " + JSON.parse(localStorage.getItem("jwt")),
@@ -72,7 +74,7 @@ const AllSkills = (props) => {
       method: "put",
     }).then((response) => {
       if (response.status) {
-        fetch("/api/v1/skills/" + e.target.name, {
+        fetch(BASEURL + "/api/v1/skills/" + e.target.name, {
           method: "delete",
         });
         window.location.href = "/profile";
@@ -83,7 +85,7 @@ const AllSkills = (props) => {
   function totalExpInSkill(skill) {
     var totalExp = 0;
     skill.expEntries.forEach((entry) => {
-      totalExp += entry.exp;
+      totalExp += entry.hours * 50 * (entry.focus / 2);
     });
 
     return totalExp;

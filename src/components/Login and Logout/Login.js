@@ -1,53 +1,51 @@
 import React, { useState } from "react";
-import { useLocalState } from "../util/useLocalStorage";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [jwt, setJwt] = useLocalState("jwt", "");
   const [errorMessage, setErrorMessage] = useState("");
+  const BASEURL = "http://13.40.86.103:8080";
+  // const BASEURL = "http://localhost:8080";
 
   function handleSubmit() {
     if (username === "" || password === "") {
       setErrorMessage("Please enter your details");
       return;
     }
-    if (!jwt) {
-      const reqBody = {
-        username: username,
-        password: password,
-      };
-      fetch("/api/v1/login", {
-        headers: {
-          "Content-type": "application/json",
-        },
-        method: "post",
-        body: JSON.stringify(reqBody),
+    const reqBody = {
+      username: username,
+      password: password,
+    };
+
+    fetch(BASEURL + "/api/v1/login", {
+      headers: {
+        "Content-type": "application/json",
+      },
+      method: "post",
+      body: JSON.stringify(reqBody),
+    })
+      .then((response) => {
+        if (response.status === 200)
+          return Promise.all([response.text(), response.headers]);
+        else if (response.status === 401)
+          return Promise.reject("Invalid login attempt");
+        else
+          return Promise.reject("Something went wrong! Please try again later");
       })
-        .then((response) => {
-          if (response.status === 200)
-            return Promise.all([response.json(), response.headers]);
-          else if (response.status === 401)
-            return Promise.reject("Invalid login attempt");
-          else
-            return Promise.reject(
-              "Something went wrong! Please try again later"
-            );
-        })
-        .then(([body, headers]) => {
-          setJwt(headers.get("authorization"));
-          window.location.replace("/profile");
-        })
-        .catch((message) => {
-          setErrorMessage(message);
-        });
-    }
+      .then(([body, headers]) => {
+        localStorage.setItem("jwt", JSON.stringify(body));
+        window.location.href = "/profile";
+      })
+      .catch((message) => {
+        console.log("ERROR: " + message);
+        // setErrorMessage(message);
+      });
   }
 
   return (
-    <div className="login-page-conatiner">
+    <div className="login-page-container">
       <div className="login-container">
-        <h4>Login</h4>
+        <h4 className="small-page-title">Login</h4>
         <div>
           <input
             type="text"
