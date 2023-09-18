@@ -10,7 +10,6 @@ function Header() {
 
   useEffect(() => {
     setJwt(JSON.parse(localStorage.getItem("jwt")));
-    console.log("hello");
   }, [tempJwt]);
 
   useEffect(() => {

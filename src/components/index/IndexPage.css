@@ -26,16 +26,6 @@
   z-index: 999;
 }
 
-@media (max-width: 40em) {
-  @supports (backdrop-filter: blur(1rem)) {
-    .top-text-container {
-      font-size: 1rem;
-      backdrop-filter: blur(0.5rem);
-      /* width: 100%; */
-    }
-  }
-}
-
 .image-container {
   flex: 1;
   min-width: 224px;
@@ -47,18 +37,32 @@
 
 .show-container {
   width: 100%;
-  height: 50vw;
+  height: 40vw;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .info-deck {
-  padding: 6em 10% 3em 10%;
+  padding: 4em 10%;
   display: flex;
   justify-content: space-between;
   gap: 2em;
   flex-wrap: wrap;
+}
+
+@media (max-width: 40em) {
+  @supports (backdrop-filter: blur(1rem)) {
+    .top-text-container {
+      font-size: 1rem;
+      backdrop-filter: blur(0.5rem);
+      /* width: 100%; */
+    }
+
+    .info-deck {
+      padding-top: 7em;
+    }
+  }
 }
 
 .card-in-deck {

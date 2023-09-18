@@ -35,7 +35,7 @@ const About = () => {
             <p>
               My mission is to provide a fun and interactive platform that
               allows you to track your progress and level up your character
-              while pursuing your passions and honing your skills. We believe
+              while pursuing your passions and honing your skills. I believe
               that the journey of self-improvement should be an exciting
               adventure, and AB Tracker is designed to make that journey both
               rewarding and enjoyable.
@@ -109,10 +109,10 @@ const About = () => {
           </div>
           <div className="tech-container">
             <h4>Other</h4>
+            <p>AWS</p>
             <p>MYSQL</p>
             <p>JWT</p>
             <p>GitHub</p>
-            <p>Docker</p>
           </div>
         </div>
       </div>

@@ -71,7 +71,6 @@ header {
 }
 
 .character-skills {
-  /* margin-block: auto; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -92,7 +91,6 @@ header {
   list-style-type: none;
   padding: 0;
   margin: 0;
-  /* transform: translateX(0%); */
 }
 
 .nav-item {
@@ -121,7 +119,6 @@ header {
   border: 2px solid rgb(235, 235, 235);
   border-radius: 25px;
   background-color: white;
-  /* flex: 50%; */
 }
 
 .skill-box-goal {
@@ -153,8 +150,6 @@ header {
   padding-block: 1em;
 }
 
-.add-skill-container label {
-}
 .mobile-nav-toggle {
   display: none;
 }
@@ -188,14 +183,9 @@ header {
     position: fixed;
     inset: 0 0 0 30%;
     z-index: 1000;
-
-    background: hsl(0 0% 100% / 0.9);
-    /* backdrop-filter: blur(1rem); */
-
+    background-color: #e7e5df;
     padding: min(10vh, 10rem) 2em;
     flex-direction: column;
-
-    /* transform: translateX(0%); */
   }
 
   .mobile-nav-toggle {
@@ -203,13 +193,6 @@ header {
     z-index: 9999;
     width: 1rem;
     right: 2rem;
-  }
-
-  @supports (backdrop-filter: blur(1rem)) {
-    .primary-navigation {
-      background: hsl(0 0% 100% / 0.1);
-      backdrop-filter: blur(1rem);
-    }
   }
 }
 

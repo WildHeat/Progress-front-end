@@ -7,9 +7,9 @@
 }
 
 .image-slidshow-container {
-  width: 80%;
+  width: 60%;
   height: 80%;
-  position: relative;
+  margin-block: 4em;
 }
 
 .dots-container {
