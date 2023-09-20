@@ -36,6 +36,10 @@ function Register() {
       errors.push("Username must contain at least one letter");
     }
 
+    if (!/s/.test(data.username)) {
+      errors.push("Username can't contain any spaces");
+    }
+
     setErrorMessage(errors);
 
     if (errors.length > 0) return;
