@@ -3,7 +3,6 @@ import { useLocalState } from "../../util/useLocalStorage";
 import ProfileSection from "./ProfileSection.js";
 import AllSkills from "./AllSkills.js";
 import { useNavigate } from "react-router-dom";
-import Header from "../Header/Header";
 
 function ProfilePage() {
   const [user, setUser] = useState("");

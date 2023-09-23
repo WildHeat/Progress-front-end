@@ -5,7 +5,6 @@ import PageNotFound from "./components/PageNotFound";
 import PrivateRoute from "./components/PrivateRoute";
 import Login from "./components/Login and Logout/Login";
 import Logout from "./components/Login and Logout/Logout";
-import Header from "./components/Header/Header";
 import IndexPage from "./components/index/IndexPage";
 import SkillView from "./components/SkillView/SkillView";
 import ProfilePage from "./components/Profile/ProfilePage";
