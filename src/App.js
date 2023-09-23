@@ -16,6 +16,7 @@ import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import About from "./components/About/About";
 import ScrollToTop from "./components/ScrollToTop";
 import Register from "./components/Register/Register";
+import HeaderUpdater from "./components/HeaderUpdater";
 
 library.add(faBars, faTimes);
 
@@ -23,32 +24,77 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Header />
         <Routes>
-          <Route path="/" element={<IndexPage />} />
+          <Route
+            path="/"
+            element={
+              <HeaderUpdater>
+                <IndexPage />
+              </HeaderUpdater>
+            }
+          />
           <Route
             path="/profile"
             element={
-              <PrivateRoute>
-                <ProfilePage />
-              </PrivateRoute>
+              <HeaderUpdater>
+                <PrivateRoute>
+                  <ProfilePage />
+                </PrivateRoute>
+              </HeaderUpdater>
             }
           />
 
           <Route
             path="/skills/:id"
             element={
-              <PrivateRoute>
-                <SkillView />
-              </PrivateRoute>
+              <HeaderUpdater>
+                <PrivateRoute>
+                  <SkillView />
+                </PrivateRoute>
+              </HeaderUpdater>
             }
           />
 
-          <Route path="/login" element={<Login />} />
-          <Route path="/logout" element={<Logout />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/*" element={<PageNotFound />} />
+          <Route
+            path="/login"
+            element={
+              <HeaderUpdater>
+                <Login />
+              </HeaderUpdater>
+            }
+          />
+          <Route
+            path="/logout"
+            element={
+              <HeaderUpdater>
+                <Logout />
+              </HeaderUpdater>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <HeaderUpdater>
+                <Register />
+              </HeaderUpdater>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <HeaderUpdater>
+                <About />
+              </HeaderUpdater>
+            }
+          />
+          <Route
+            path="/*"
+            element={
+              <HeaderUpdater>
+                <PageNotFound />
+              </HeaderUpdater>
+            }
+          />
         </Routes>
         <Footer />
         <ScrollToTop />

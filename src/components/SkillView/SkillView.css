@@ -52,6 +52,20 @@ input {
 
 .goal-text-box {
   width: 100%;
+  text-wrap: wrap;
+}
+
+.goal-input {
+  margin-bottom: 1em;
+}
+
+.exp-input {
+  margin-bottom: 1em;
+  width: 10em;
+}
+
+.exp-number-input {
+  width: 5em;
 }
 
 .compo {

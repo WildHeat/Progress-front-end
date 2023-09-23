@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { getTodaysDate } from "../../util/getTodaysDate";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
   const [errorMessage, setErrorMessage] = useState([]);
@@ -8,8 +9,7 @@ function Register() {
     password: "",
     skill: "",
   });
-  const BASEURL = "http://13.40.86.103:8080";
-  // const BASEURL = "http://localhost:8080";
+  let navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -44,7 +44,7 @@ function Register() {
 
     if (errors.length > 0) return;
 
-    fetch(BASEURL + "/api/v1/users", {
+    fetch(process.env.REACT_APP_URL + "/api/v1/users", {
       headers: {
         "Content-type": "application/json",
       },
@@ -57,7 +57,7 @@ function Register() {
       }),
     }).then((response) => {
       if (response.status === 201) {
-        window.location.replace("/login");
+        navigate("/login");
       } else if (response.status === 409) {
         setErrorMessage(["Username is already taken. Choose a different name"]);
       }

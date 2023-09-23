@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import "./IndexPage.css";
 import ImageSlider from "../ImageSlider/ImageSlider";
 import InfoDeck from "./InfoDeck";
+import { Link } from "react-router-dom";
 
 function IndexPage() {
   const slides = [
@@ -68,9 +69,9 @@ function IndexPage() {
         <h3 className="begin-your-journey">
           SO...ARE YOU READY TO START YOUR JOURNEY? REGISTER AND BEGIN!
         </h3>
-        <a href="/register">
+        <Link to="/register">
           <button className="register-button">Register</button>
-        </a>
+        </Link>
       </div>
     </div>
   );

@@ -33,14 +33,11 @@ const SkillView = () => {
 
   const [expGraph, setExpGraph] = useState();
 
-  const BASEURL = "http://13.40.86.103:8080";
-  // const BASEURL = "http://localhost:8080";
-
   async function handleEditNameSubmit() {
     let newSkill = skill;
     newSkill.name = editName;
 
-    await fetch(BASEURL + "/api/v1/skills", {
+    await fetch(process.env.REACT_APP_URL + "/api/v1/skills", {
       headers: {
         "Content-type": "application/json",
         authorization: "Bearer " + jwt,
@@ -57,7 +54,7 @@ const SkillView = () => {
 
   useEffect(() => {
     async function fetchData() {
-      await fetch(BASEURL + "/api/v1/skills/" + skillId, {
+      await fetch(process.env.REACT_APP_URL + "/api/v1/skills/" + skillId, {
         headers: {
           "Content-type": "application/json",
           authorization: "Bearer " + jwt,
@@ -147,7 +144,7 @@ const SkillView = () => {
       return expEntry.id !== Number(id);
     });
 
-    await fetch(BASEURL + "/api/v1/skills", {
+    await fetch(process.env.REACT_APP_URL + "/api/v1/skills", {
       headers: {
         "Content-type": "application/json",
         authorization: "Bearer " + jwt,
@@ -156,7 +153,7 @@ const SkillView = () => {
       body: JSON.stringify(tempSkill),
     }).then(() => {
       setTimeout(() => {
-        fetch(BASEURL + "/api/v1/expentries/" + id, {
+        fetch(process.env.REACT_APP_URL + "/api/v1/expentries/" + id, {
           method: "DELETE",
         });
         setRefresh(true);
@@ -169,7 +166,7 @@ const SkillView = () => {
       // the base exp per hour will be 100
       const addExpValue = addExpLength * 50 * (addExpFocus / 2);
 
-      await fetch(BASEURL + "/api/v1/expentries", {
+      await fetch(process.env.REACT_APP_URL + "/api/v1/expentries", {
         headers: {
           "Content-type": "application/json",
         },
@@ -188,7 +185,7 @@ const SkillView = () => {
         })
         .then(async (expEntry) => {
           skill.expEntries.push(expEntry);
-          await fetch(BASEURL + "/api/v1/skills", {
+          await fetch(process.env.REACT_APP_URL + "/api/v1/skills", {
             headers: {
               "Content-type": "application/json",
               authorization: "Bearer " + jwt,
@@ -202,7 +199,7 @@ const SkillView = () => {
   }
 
   async function handleAddGoal() {
-    await fetch(BASEURL + "/api/v1/goals", {
+    await fetch(process.env.REACT_APP_URL + "/api/v1/goals", {
       headers: {
         "Content-type": "application/json",
       },
@@ -221,7 +218,7 @@ const SkillView = () => {
       })
       .then(async (goal) => {
         skill.goals.push(goal);
-        await fetch(BASEURL + "/api/v1/skills", {
+        await fetch(process.env.REACT_APP_URL + "/api/v1/skills", {
           headers: {
             "Content-type": "application/json",
             authorization: "Bearer " + jwt,
@@ -239,7 +236,7 @@ const SkillView = () => {
       return goal.id !== Number(e.target.id);
     });
 
-    await fetch(BASEURL + "/api/v1/skills", {
+    await fetch(process.env.REACT_APP_URL + "/api/v1/skills", {
       headers: {
         "Content-type": "application/json",
         authorization: "Bearer " + jwt,
@@ -247,7 +244,7 @@ const SkillView = () => {
       method: "PUT",
       body: JSON.stringify(tempSkill),
     }).then(async () => {
-      await fetch(BASEURL + "/api/v1/goals/" + e.target.id, {
+      await fetch(process.env.REACT_APP_URL + "/api/v1/goals/" + e.target.id, {
         method: "DELETE",
       });
       setRefresh(true);
@@ -265,7 +262,7 @@ const SkillView = () => {
       tempGoal.endDate = getTodaysDate();
     }
 
-    await fetch(BASEURL + "/api/v1/goals", {
+    await fetch(process.env.REACT_APP_URL + "/api/v1/goals", {
       headers: {
         "Content-type": "application/json",
         authorization: "Bearer " + jwt,
@@ -332,18 +329,16 @@ const SkillView = () => {
               <div className="compo">
                 <h4>Stats</h4>
                 <hr />
-                <p>Average time: {round(averageTime)}h</p>
-                <p>Average focus: {round(averageFocus)}</p>
                 <p>Total time: {round(totalTime)}</p>
                 <p>Total EXP: {totalExp}</p>
+                <p>Average time: {round(averageTime)}h</p>
+                <p>Average focus: {round(averageFocus)}</p>
                 <ToolTip
-                  tooltip={
-                    "Some stats for the nerds ans some more about somethihng"
-                  }
+                  tooltip={"Some stats about your skill for the nerds"}
                 />
               </div>
               <div className="compo">
-                <h4>Goals:</h4>
+                <h4>Goals</h4>
                 <hr />
                 <div className="goal-table-container">
                   <table>
@@ -423,10 +418,11 @@ const SkillView = () => {
                 <br />
                 <h5>Add new goal</h5>
                 <hr />
-                <label htmlFor="goal-name">Goal:</label>
+                <label htmlFor="goal-name">The Goal</label>
+                <br />
                 <input
                   id="goal-name"
-                  className="goal-text-box"
+                  className="goal-text-box goal-input"
                   type="text"
                   value={addGoalInfo}
                   onChange={(e) => {
@@ -434,8 +430,10 @@ const SkillView = () => {
                   }}
                 />
                 <br />
-                <label htmlFor="start-date">Start date:</label>
+                <label htmlFor="start-date">Start date</label>
+                <br />
                 <input
+                  className="goal-input"
                   id="start-date"
                   type="date"
                   value={addGoalStartDate}
@@ -444,8 +442,10 @@ const SkillView = () => {
                   }}
                 />
                 <br />
-                <label htmlFor="deadline">DeadLine:</label>
+                <label htmlFor="deadline">DeadLine</label>
+                <br />
                 <input
+                  className="goal-input"
                   id="deadline"
                   type="date"
                   value={addGoalDeadLine}
@@ -471,11 +471,14 @@ const SkillView = () => {
               <div className="compo">
                 <h4>Exp Entries</h4>
                 <hr />
-                <h6>Add new experience </h6>
+                <h5>Add new experience </h5>
+                <hr />
                 <label htmlFor="add-exp-hours">
                   How many hours did you put in?
                 </label>
+                <br />
                 <input
+                  className="exp-input exp-number-input"
                   id="add-exp-hours"
                   type="number"
                   min={0}
@@ -488,7 +491,9 @@ const SkillView = () => {
                 <label htmlFor="add-exp-focus">
                   How focused were you? (1-5)
                 </label>
+                <br />
                 <input
+                  className="exp-input exp-number-input"
                   id="add-exp-focus"
                   type="number"
                   min={1}
@@ -499,8 +504,10 @@ const SkillView = () => {
                   }}
                 />
                 <br />
-                <label htmlFor="add-exp-date">Date:</label>
+                <label htmlFor="add-exp-date">Date</label>
+                <br />
                 <input
+                  className="exp-input"
                   id="add-exp-date"
                   type="date"
                   value={addExpDate}
@@ -516,6 +523,8 @@ const SkillView = () => {
                 >
                   Add Exp
                 </button>
+                <br />
+                <br />
                 <div className="entries-window">
                   <table>
                     <tr>

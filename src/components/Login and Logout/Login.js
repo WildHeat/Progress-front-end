@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Header from "../Header/Header";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const BASEURL = "http://13.40.86.103:8080";
-  // const BASEURL = "http://localhost:8080";
+  let navigate = useNavigate();
 
   function handleSubmit() {
     if (username === "" || password === "") {
@@ -17,7 +18,7 @@ const Login = () => {
       password: password,
     };
 
-    fetch(BASEURL + "/api/v1/login", {
+    fetch(process.env.REACT_APP_URL + "/api/v1/login", {
       headers: {
         "Content-type": "application/json",
       },
@@ -34,11 +35,10 @@ const Login = () => {
       })
       .then(([body, headers]) => {
         localStorage.setItem("jwt", JSON.stringify(body));
-        window.location.href = "/profile";
+        navigate("/profile");
       })
       .catch((message) => {
         console.log("ERROR: " + message);
-        // setErrorMessage(message);
       });
   }
 
@@ -71,6 +71,10 @@ const Login = () => {
           <button type="submit" onClick={() => handleSubmit()}>
             Login
           </button>
+        </div>
+        <div className="test-details">
+          <p>Test user: Samurai</p>
+          <p>Test password: Password123</p>
         </div>
       </div>
     </div>

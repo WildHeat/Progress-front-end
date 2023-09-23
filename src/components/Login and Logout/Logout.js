@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Logout = () => {
+  let navigate = useNavigate();
   return (
     <div className="logout-page-container">
       <div className="logout-container">
@@ -8,7 +10,7 @@ const Logout = () => {
         <button
           onClick={() => {
             localStorage.setItem("jwt", null);
-            window.location.href = "/login";
+            navigate("/login");
           }}
         >
           Logout

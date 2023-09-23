@@ -1,22 +1,29 @@
 import React, { useState } from "react";
 import Skill from "./Skill";
 import { getTodaysDate } from "../../util/getTodaysDate";
+import { useNavigate } from "react-router-dom";
 
 const AllSkills = (props) => {
   const [newSkillName, setNewSkillName] = useState("");
-  const BASEURL = "http://13.40.86.103:8080";
+  let navigate = useNavigate();
 
   async function handleNewSkillSubmit() {
+    if (newSkillName === "" || newSkillName[0] === " ") {
+      return;
+    }
+
     if (props.user) {
       let newSkill = {
         name: newSkillName,
         exp: 0,
         startDate: getTodaysDate(),
+        expEntries: [],
+        goals: [],
       };
       let tempUser = props.user;
       delete tempUser.authorities;
 
-      await fetch(BASEURL + "/api/v1/skills", {
+      await fetch(process.env.REACT_APP_URL + "/api/v1/skills", {
         headers: {
           "Content-type": "application/json",
           authorization: "Bearer " + JSON.parse(localStorage.getItem("jwt")),
@@ -37,7 +44,7 @@ const AllSkills = (props) => {
           console.log(body);
           tempUser.skills.push(body);
 
-          fetch(BASEURL + "/api/v1/users", {
+          fetch(process.env.REACT_APP_URL + "/api/v1/users", {
             headers: {
               "Content-type": "application/json",
               authorization:
@@ -46,12 +53,10 @@ const AllSkills = (props) => {
             body: JSON.stringify(tempUser),
             method: "put",
           }).then((response) => {
-            if (response.status === 201)
-              return Promise.all([response.json(), response.headers]);
-            else
-              return Promise.reject("Failed to update. Somthing went wrong.");
+            if (response.status !== 201)
+              alert("Failed to update. Somthing went wrong.");
           });
-          window.location.href = "/profile";
+          navigate("/profile");
         });
     }
   }
@@ -65,7 +70,7 @@ const AllSkills = (props) => {
 
     delete tempUser.authorities;
 
-    await fetch(BASEURL + "/api/v1/users", {
+    await fetch(process.env.REACT_APP_URL + "/api/v1/users", {
       headers: {
         "Content-type": "application/json",
         authorization: "Bearer " + JSON.parse(localStorage.getItem("jwt")),
@@ -74,16 +79,17 @@ const AllSkills = (props) => {
       method: "put",
     }).then((response) => {
       if (response.status) {
-        fetch(BASEURL + "/api/v1/skills/" + e.target.name, {
+        fetch(process.env.REACT_APP_URL + "/api/v1/skills/" + e.target.name, {
           method: "delete",
         });
-        window.location.href = "/profile";
+        navigate("/profile");
       }
     });
   }
 
   function totalExpInSkill(skill) {
     var totalExp = 0;
+    if (skill.expEntries === null) return totalExp;
     skill.expEntries.forEach((entry) => {
       totalExp += entry.hours * 50 * (entry.focus / 2);
     });

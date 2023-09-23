@@ -12,11 +12,13 @@ const Skill = ({ skill, exp, skillId, goals }) => {
   var [goalToDisplay, setGoalToDisplay] = useState("");
 
   useEffect(() => {
-    if (goals.length > 0) {
-      for (let i = 0; i < goals.length; i++) {
-        if (!goals[i].complete) {
-          setGoalToDisplay(goals[i].goal);
-        }
+    if (goals === null || goals.length <= 0) {
+      return;
+    }
+
+    for (let i = 0; i < goals.length; i++) {
+      if (!goals[i].complete) {
+        setGoalToDisplay(goals[i].goal);
       }
     }
   }, [goals]);
