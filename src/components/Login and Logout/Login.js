@@ -72,8 +72,8 @@ const Login = () => {
           </button>
         </div>
         <div className="test-details">
-          <p>Test user: Samurai</p>
-          <p>Test password: Password123</p>
+          <p>Demo user: Samurai</p>
+          <p>Demo password: Password123</p>
         </div>
       </div>
     </div>

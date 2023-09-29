@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { getTodaysDate } from "../../util/getTodaysDate";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
   const [errorMessage, setErrorMessage] = useState([]);
@@ -79,6 +79,10 @@ function Register() {
     <div className="register-page-container">
       <div className="register-container">
         <h4 className="small-page-title">Register</h4>
+        <p className="demo-message">
+          Don't want to register? Try the <Link to={"/login"}>DEMO</Link>{" "}
+          account!
+        </p>
         <form onSubmit={(e) => handleSubmit(e)}>
           <input
             onChange={(e) => handleChange(e)}
@@ -106,6 +110,7 @@ function Register() {
           />
           <input type="submit" value="Start Your Journey" />
         </form>
+
         {errorMessage.map((error) => {
           return (
             <div key={error}>

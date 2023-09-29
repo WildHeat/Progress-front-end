@@ -323,3 +323,7 @@ tr:nth-child(even) {
 .test-details p {
   margin: 0;
 }
+
+.demo-message {
+  font-size: 1.1em;
+}
